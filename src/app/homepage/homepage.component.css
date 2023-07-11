@@ -1,0 +1,31 @@
+.sidebar {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 100; 
+
+  }
+  .font1{
+    font-family: 'Pacifico', cursive;
+}
+  .space{
+    margin-right:20px;
+  }
+  
+  .sidebar .nav-link {
+    color: #000;
+    font-size: 20px;
+    padding:20px;
+    justify-content: between;
+  }
+  
+  .sidebar .nav-link:hover,
+  .sidebar .nav-link.active {
+    background-color: #e2e2e2;
+  }
+  
+  .content {
+    margin-left: 250px;
+    padding: 20px;
+  }

@@ -1,0 +1,106 @@
+<div class="fs-2 text-muted m-2 text-center">New Post</div>
+
+<mat-horizontal-stepper  style="height: 100%;">
+    <!-- Step 1: Profile Image Upload -->
+
+      <mat-step>
+        <div class="container  bg-white rounded p-4 shadow">
+        <form calss="" [formGroup]="firstFormGroup">
+      <ng-template matStepLabel>Select Image</ng-template>
+      <div class="text-center" formArrayName="image">
+        <div *ngIf="selectedFile!=null">
+          <!-- <ng-container *ngFor="let item of selectedFileUrl">
+          <img class="border border-2 border-dark" style="width: 450px;height: 600px;object-fit: cover;" [src]="item" alt="Selected Image" />
+          </ng-container>--> 
+        </div> 
+        <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
+          <div class="carousel-inner">
+            <!-- Dynamically generate carousel items -->
+            <div *ngFor="let item of selectedFileUrl; let i = index" [ngClass]="{ 'carousel-item': true, 'active': i === 0 }">
+              
+              <img [src]="item" class="border border-1 border-dark rounded " style="width: 450px;height: 600px;object-fit: cover;" alt="Slide {{ i }}">
+              <button type="submit" class="btn position-absolute top-0 end-20" (click)="removeItem(i)" ><svg  xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-x-circle-fill" viewBox="0 0 16 16">
+                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z"/>
+              </svg></button>
+          </div>
+          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon bg-dark" aria-hidden="true"></span>
+            <span class="visually-hidden ">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+            <span class="carousel-control-next-icon bg-dark" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>
+        </div>
+        
+      <div *ngFor="let item of imageArray.controls;let i=index">
+         <input type="file" class="imgwid" id="profileimg" (change)="onFileSelected($event)" accept="image/*" [formControlName]="i" multiple/>
+      </div>
+      <br/>
+      <label for="profileimg">
+        <svg (click)="addItem()" style="width: 80px;height: 80px;" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-camera" viewBox="0 0 16 16">
+            <path d="M15 12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h1.172a3 3 0 0 0 2.12-.879l.83-.828A1 1 0 0 1 6.827 3h2.344a1 1 0 0 1 .707.293l.828.828A3 3 0 0 0 12.828 5H14a1 1 0 0 1 1 1v6zM2 4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-1.172a2 2 0 0 1-1.414-.586l-.828-.828A2 2 0 0 0 9.172 2H6.828a2 2 0 0 0-1.414.586l-.828.828A2 2 0 0 1 3.172 4H2z"/>
+            <path d="M8 11a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5zm0 1a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7zM3 6.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0z"/>
+        </svg><div class="fs-6">Select Image</div>
+      </label>
+      </div>
+      <div>
+        <!-- <button mat-button matStepperNext class="border fs-6  bg-dark text-white m-2">Next</button> -->
+        <button mat-button matStepperNext class=" fs-6  bg-dark text-white m-2 shadow">Next</button>
+      </div>
+      </form>
+      </div>
+      </mat-step>
+
+      <!-- Step 2: Input Text -->
+      <mat-step>
+        <div class="container  bg-white rounded p-4 shadow">
+        <form [formGroup]="secondFormGroup">
+      <ng-template matStepLabel>Caption</ng-template>
+      <mat-form-field class="w-100">
+        <input matInput placeholder="Write a caption..." formControlName="caption" required>
+      </mat-form-field>
+      <div>
+        <button mat-button matStepperPrevious class="fs-6  bg-dark text-white m-2 shadow">Back</button>
+        <button mat-button matStepperNext class="fs-6 bg-dark text-white m-2 shadow">Next</button>
+      </div>
+      </form>
+      </div>
+      </mat-step>
+  
+      <!-- Step 3: Summary -->
+      <mat-step>
+        <div class="container  rounded p-4 shadow">
+       <ng-template matStepLabel>Post Preview</ng-template>
+       <div class="card border border-dark" style="width: 450px;height: max-content;object-fit: cover;" >
+        <div id="slidercrousel" class="carousel slide" data-bs-ride="carousel">
+        
+        <div class="carousel-inner">
+          <!-- Dynamically generate carousel items -->
+        <div *ngFor="let item of selectedFileUrl; let i = index" [ngClass]="{ 'carousel-item': true, 'active': i === 0 }">   
+            <img [src]="item" class="border border-1 rounded " style="width: 450px;height:650px;object-fit: cover;" alt="Slide {{ i }}">            
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#slidercrousel" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon bg-dark" aria-hidden="true"></span>
+          <span class="visually-hidden ">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#slidercrousel" data-bs-slide="next">
+          <span class="carousel-control-next-icon bg-dark" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+        
+        </div>
+        <div class="card-body">
+          <p class="card-text">{{this.secondFormGroup.value.caption}}</p>
+        </div>
+        </div>
+        
+      </div>
+      <div class="pt-5">
+        <button mat-button matStepperPrevious class="fs-6 bg-dark text-white m-2 shadow">Back</button>
+        <button mat-button (click)="submitForm()" class="fs-6 bg-dark text-white m-2 shadow">Post</button>
+      </div>
+    </div>
+    </mat-step>
+  </mat-horizontal-stepper>

@@ -1,0 +1,15 @@
+.font1{
+    font-family: 'Pacifico', cursive;
+}
+
+.bodycolor{
+    background: linear-gradient(90deg, rgba(253,29,29,1) 0%, rgba(252,176,69,1) 0%, rgba(176,58,180,1) 81%);
+}
+
+.bordergradient{
+    border: 2px solid linear-gradient(90deg, rgba(253,29,29,1) 0%, rgba(252,176,69,1) 0%, rgba(176,58,180,1) 81%);
+}
+
+.aaa{
+    height:100vh;
+}

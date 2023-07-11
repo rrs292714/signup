@@ -1,0 +1,36 @@
+<div class="d-flex ">
+    <div class="mx-auto d-flex mt-5">
+    <img style="width:60px;" src="../../assets/Instagram_logo_2016.svg.webp" alt="">
+    <h1 class="font1 mx-2" >Instagram</h1>
+  </div>
+</div>
+<div class=" container w-75 border bordergradient shadow  rounded my-5 p-3">
+    <h1 class="font1  text-center" >Sign Up</h1>
+<form [formGroup]="RegisterForm" (ngSubmit)="OnRegister()">
+  <div class="mb-3">
+    <label for="exampleInputEmail1" class="form-label">Email :</label>
+    <input type="email" class="form-control" name="email" id="exampleInputEmail1" aria-describedby="emailHelp" formControlName="Email">
+  </div>
+    <div class="mb-3">
+      <label for="firstName" class="form-label">Full Name :</label>
+      <input type="text" class="form-control" name="fname" id="firstName" formControlName="FullName" >
+    </div>
+    <!-- <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Last Name :</label>
+        <input type="text" class="form-control" name="lname" id="exampleInputEmail1" formControlName="LastName" >
+    </div> -->
+      
+      <div class="mb-3">
+        <label for="username" class="form-label">UserName :</label>
+        <input type="text" class="form-control" name="uname" id="username" formControlName="UserName">
+      </div>      
+    <div class="mb-3 ">
+      <label for="exampleInputPassword1" class="form-label">Password :</label>
+      <input type="password" class="form-control" name="name" id="exampleInputPassword1" formControlName="Password">
+    </div>
+    <button type="submit" class="btn bodycolor px-4 w-100 " [disabled]="RegisterForm.invalid"> <span class="text-white fs-5">Submit</span></button>
+</form>
+<div class="pt-2 text-center text-decoration-none">
+<span >Already have an account?<a routerLink='/login' routerLinkActive="router-link-active " class="text-decoration-none"> Login</a></span>
+</div>
+</div>
