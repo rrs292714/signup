@@ -73,6 +73,7 @@
       <mat-step>
         <div class="container  rounded p-4 shadow">
        <ng-template matStepLabel>Post Preview</ng-template>
+       <ng-container *ngIf="selectedFileUrl!=null">
        <div class="card border border-dark" style="width: 450px;height: max-content;object-fit: cover;" >
         <div id="slidercrousel" class="carousel slide" data-bs-ride="carousel">
         
@@ -97,6 +98,7 @@
         </div>
         
       </div>
+    </ng-container>
       <div class="pt-5">
         <button mat-button matStepperPrevious class="fs-6 bg-dark text-white m-2 shadow">Back</button>
         <button mat-button (click)="submitForm()" class="fs-6 bg-dark text-white m-2 shadow">Post</button>
