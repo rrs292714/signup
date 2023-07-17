@@ -21,6 +21,8 @@ import {MatButtonModule} from '@angular/material/button';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NotificationComponent } from './notification/notification.component';
 import { CreatePostComponent } from './create-post/create-post.component';
+import { MatRadioModule } from '@angular/material/radio';
+
 
 @NgModule({
   declarations: [
@@ -47,6 +49,7 @@ import { CreatePostComponent } from './create-post/create-post.component';
     MatStepperModule,
     MatFormFieldModule,
     MatInputModule,
+    MatRadioModule,
     BrowserAnimationsModule
   ],
   providers: [],

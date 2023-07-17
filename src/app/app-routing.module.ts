@@ -6,11 +6,12 @@ import { LoginComponent } from './login/login.component';
 import { NotificationComponent } from './notification/notification.component';
 import { PostpageComponent } from './postpage/postpage.component';
 import { ProfileComponent } from './profile/profile.component';
+import { ProfileformComponent } from './profileform/profileform.component';
 import { RegisterComponent } from './register/register.component';
 import { StartpageComponent } from './startpage/startpage.component';
 
 const routes: Routes = [
-  {path:'',component:StartpageComponent,
+  {path:'',component:ProfileformComponent,
    children:[
     {path:'',component:LoginComponent},
     {path:'login',component:LoginComponent},

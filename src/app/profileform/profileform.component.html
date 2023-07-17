@@ -16,13 +16,13 @@
           </svg><div class="fs-6">Upload Profile Image</div>
        </label>
       
-      <input type="file" class="imgwid" id="profileimg" (change)="onFileSelected($event)" accept="image/*" formControlName="firstCtrl"/>
+      <input type="file" class="imgwid" id="profileimg" (change)="onFileSelected($event)" accept="image/*" formControlName="profileimage"/>
       <br />
      
       </div>
       <div>
         <!-- <button mat-button matStepperNext class="border fs-6  bg-dark text-white m-2">Next</button> -->
-        <button mat-button matStepperNext class=" fs-6  bg-dark text-white m-2 shadow">Skip</button>
+        <button mat-button matStepperNext class=" fs-6  bg-dark text-white m-2 shadow"> Next</button>
 
       </div>
     </form>
@@ -35,41 +35,31 @@
         <form [formGroup]="secondFormGroup">
       <ng-template matStepLabel>Bio</ng-template>
       <mat-form-field class="w-100">
-        <input matInput placeholder="Enter your Bio"  formControlName="secondCtrl" required>
+        <input matInput placeholder="Enter your Bio"  formControlName="bio" required>
       </mat-form-field>
       <div>
         <button mat-button matStepperPrevious class="fs-6  bg-dark text-white m-2 shadow">Back</button>
-        <button mat-button matStepperNext class="fs-6 bg-dark text-white m-2 shadow">Skip</button>
+        <button mat-button matStepperNext class="fs-6 bg-dark text-white m-2 shadow">Next</button>
       </div>
       </form>
         </div>
     </mat-step>
 
     <mat-step>
-        <div class="container bg-white rounded p-4 shadow">
-        <form [formGroup]="secondFormGroup">
-      <ng-template matStepLabel>Privacy</ng-template>
-      <mat-form-field class="w-100">
-        <input matInput placeholder="Enter your Bio"  formControlName="secondCtrl" required>
-      </mat-form-field>
-      <div>
-        <button mat-button matStepperPrevious class="fs-6  bg-dark text-white m-2 shadow">Back</button>
-        <button mat-button matStepperNext class="fs-6 bg-dark text-white m-2 shadow">Skip</button>
-      </div>
-      </form>
-        </div>
-    </mat-step>
-  
-    <!-- Step 3: Summary -->
-    <mat-step>
-      <ng-template matStepLabel>Summary</ng-template>
-      <h3>Profile Image:</h3>
-      <img [src]="selectedFileUrl" alt="Selected Image" />
-      <h3>Input Text:</h3>
-      <p></p>
-      <div>
-        <button mat-button matStepperPrevious class="fs-6 bg-primary text-white m-2 shadow">Back</button>
-        <button mat-button (click)="submitForm()" class="fs-6 bg-primary text-white m-2 shadow">Submit</button>
+      <div class="container bg-white rounded p-4 shadow">
+        <form [formGroup]="thirdFormGroup">
+          <ng-template matStepLabel>Privacy</ng-template>
+          
+            <mat-radio-group formControlName="privacy" required>
+              <mat-radio-button value="Public" class="m-2">Public</mat-radio-button>
+              <mat-radio-button value="Private" class="m-2">Private</mat-radio-button>
+            </mat-radio-group>
+         
+          <div>
+            <button mat-button matStepperPrevious class="fs-6 bg-dark text-white m-2 shadow">Back</button>
+            <button mat-button matStepperNext (click)="submitForm()" class="fs-6 bg-dark text-white m-2 shadow">Submit</button>
+          </div>
+        </form>
       </div>
     </mat-step>
   </mat-horizontal-stepper>

@@ -75,13 +75,13 @@ export class CreatePostComponent {
   async submitForm() {
     console.log(this.selectedFile);
     console.log(this.selectedFileUrl);
-  
+    
     this.images_object.caption = this.secondFormGroup.value.caption;
-  
+    
     for (let i of this.selectedFile) {
       console.log(i.name);
     }
-  
+    
     for (let file of this.selectedFile) {
       const formData = new FormData();
       formData.append('file', file);
@@ -98,15 +98,15 @@ export class CreatePostComponent {
     }
 
     this.images_object.media = this.imagedata;
-  
+    
     try {
-      const res = await this.http.post('https://localhost:7200/api/Post/post?userid=' + 9, this.images_object).toPromise();
+      const res = await this.http.post('https://localhost:7200/api/Post/post?userid=' + 11, this.images_object).toPromise();
       console.log(res);
     } catch (error) {
       console.error('Error saving post:', error);
       // Handle the error if needed
     }
-  
+    
     this.firstFormGroup.reset();
     this.secondFormGroup.reset();
     this.selectedFileUrl.splice(0, this.selectedFileUrl.length);

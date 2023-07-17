@@ -1,34 +1,88 @@
-  <p>{{post|json}}</p>
-  
-  <div class="my-2 d-flex justify-content-center">
-        <h3 class="m-2">username</h3>
+  <p>{{profiledata|json}}</p>
+
+      <ng-container *ngFor="let x of profiledata">
+      <div class="my-2 d-flex justify-content-center">
+        <h3 class="m-2">{{x.userName}}</h3>
         <button type="button" class="btn btn-secondary w-10" (click)="editprofile()"  data-bs-toggle="modal" data-bs-target="#exampleModal">Edit Profile</button>
-    </div>
+      </div>
         <div class="my-3">
-            <img class="rounded-circle border border-info border-2 my-2 mx-4" style="width: 120px;" src="" alt="profileimg">
-            <button type="button" class="btn btn-white border border-white w-25">Post 3</button>
-            <button type="button" class="btn border border-white w-25 mx-4">Followers </button>
-            <button type="button" class="btn border border-white mx-4 w-25">Following </button>
+            <img class="rounded-circle border border-dark border-2 my-2 mx-4" src="{{x.profileImageUrl}}" style="width: 120px;height:120px;" src="" alt="profileimg">
+            <button type="button" class="btn btn-white border border-white w-25 fs-5"><div ><p>{{x.postCount}}</p>Post</div></button>
+            <button type="button" class="btn border border-white w-25 mx-4 fs-5" ><div data-bs-toggle="modal" data-bs-target="#followers"><p>{{x.followersCount}}</p>Followers</div></button>
+            <button type="button" class="btn border border-white mx-4 w-25 fs-5"><div data-bs-toggle="modal" data-bs-target="#following"><p>{{x.followingCount}}</p>Following</div></button>
         </div>
-        <h2 >FullName</h2>
-        <p>Bio</p>
+        <h2 >{{x.fullName}}</h2>
+        <p>{{x.bio}}</p>
         <div class="border border-bottom my-3 "></div>
 
-        <div class="row">
-          <ng-container *ngFor="let x of post">
-        <div class="col-lg-4 col-md-12 mb-4 mb-lg-0 ">
-          <div class="" style="width: 300px; height: 300px;">
-          <!-- <ng-container *ngFor="let y of x.media"> -->
-           <img class="border border-dark rounded" src="{{x.media[0].MediaUrl}}" alt="hello" style="width: 300px; height: 300px;" data-bs-toggle="modal" data-bs-target="#exampleModal">
-          <!-- </ng-container> -->
-        </div>
-    </div>
+        <div class="row">  
+        <div class="col-lg-4 col-md-12 mb-4 mb-lg-0 d-flex  " >
+          <ng-container *ngFor="let y of x.post">
+            <div style="width: 300px; height: 300px;" class="mx-3">
+              <img class="border border-dark rounded" src="{{y.postMedia[0].MediaUrl}}" alt="hello" style="width: 300px; height: 300px;" data-bs-toggle="modal" data-bs-target="#postmodal">
+
+            </div>
           </ng-container>
         </div>
+        </div>
+
+
+<!-- Followers Modal -->
+<div class="modal fade" id="followers" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Followers</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body mx-auto">
+        <div class=" my-2 " style="width: 18rem;"  *ngFor="let y of x.followers">
+          <ul class="list-group list-group-flush "  >
+            <li class="list-group-item">
+              <ng-container *ngFor="let z of y.UserInfo" >  
+                <img class="rounded-circle border border-dark mx-4" src="{{z.profileTable[0].ProfileImageUrl}}" style="width: 60px;height:60px;" alt="profileimg">
+                <span class="fs-5">{{z.userName}}</span>
+              </ng-container>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Following Modal -->
+<div class="modal fade" id="following" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Following</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body mx-auto">
+        <div class="my-2 " style="width: 18rem;"  *ngFor="let y of x.following">
+          <ul class="list-group list-group-flush "  >
+            <li class="list-group-item">
+              <ng-container *ngFor="let z of y.UserInfo" >  
+                <img class="rounded-circle border border-dark my-2 mx-4" src="{{z.profileTable[0].ProfileImageUrl}}" style="width: 60px;height: 60px;" alt="profileimg">
+                <span class="fs-5">{{z.userName}}</span>
+              </ng-container>
+            </li>
+          </ul>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</div>
+
+
+
 
 
 <!-- Post Modal -->
-<div class="modal fade " id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="postmodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -36,11 +90,9 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="d-block my-3 modal-dialog modal-dialog-centered modal-dialog-scrollable">
-        <ng-container *ngFor="let x of post">
         <div class="card my-3 p-4" style="width: 18rem;">
           <div>
             <p>{{x.userName}}</p>
-            <p>{{x.caption}}</p>
           </div>
           <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="false">
             <div class="carousel-indicators">
@@ -50,11 +102,10 @@
             </div>
             <div class="carousel-inner">
               <div class="carousel-item active">
-                <ng-container *ngFor="let a of x.media">
-                <img src="{{a.MediaUrl}}" class="d-block w-100" alt="image">
+                <img src="" class="d-block w-100" alt="image">
                 <div class="carousel-caption d-none d-md-block">
                 </div>
-              </ng-container>
+             
               </div>
             </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
@@ -67,14 +118,15 @@
             </button>
           </div>
           <div class="card-body">
-            <p class="card-text">{{x.userName}}  {{x.caption}}</p>
+            <p class="card-text">{{x.userName}} </p>
           </div>
         </div>
-       </ng-container>
       </div>
     </div>
   </div>
 </div>
+</ng-container>
+
 
 <!-- Edit Modal -->
 
@@ -121,11 +173,8 @@
 
           <button type="button" class="btn btn-secondary m-3" data-bs-dismiss="modal" >Close</button>
           <button type="submit" class="btn btn-primary" data-bs-dismiss="modal" (click)="submit()">Submit</button>
-
         </form>
-
         </div>
-
     </div>
   </div>
 </div>

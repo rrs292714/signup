@@ -8,17 +8,17 @@ import { ApiService } from '../services/api.service';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit{
-  editform!:FormGroup 
-   post!:any;
-  constructor(private ss:ApiService){
-    this.ss.getpost(9).subscribe(x=>{
-      this.post=this.ss.dataparser(x)
+  editform!:FormGroup;
+
+   profiledata:any;
+  constructor(private api:ApiService){
+    this.api.getpost(11).subscribe(x=>{
+      this.profiledata=this.api.dataparser(x)
     })
   }
-
   ngOnInit(){
-    this.ss.getpost(9).subscribe(x=>{
-      this.post=this.ss.dataparser(x)
+    this.api.getpost(11).subscribe(x=>{
+      this.profiledata=this.api.dataparser(x)
     })
   }
 
