@@ -22,6 +22,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NotificationComponent } from './notification/notification.component';
 import { CreatePostComponent } from './create-post/create-post.component';
 import { MatRadioModule } from '@angular/material/radio';
+import { ViewprofileComponent } from './viewprofile/viewprofile.component';
 
 
 @NgModule({
@@ -38,7 +39,8 @@ import { MatRadioModule } from '@angular/material/radio';
     EditprofileComponent,
     ProfileformComponent,
     NotificationComponent,
-    CreatePostComponent
+    CreatePostComponent,
+    ViewprofileComponent
   ],
   imports: [
     BrowserModule,

@@ -37,6 +37,20 @@
         </div>
     </div>
     <div class="col lg-2">
-        dsdf
+        <div class="container  border-start">
+            <h1 class="text-center">Suggestions</h1>
+            <ng-container *ngFor="let x of profiledata">
+            <div class=" my-2 " style="width: 18rem;"  *ngFor="let y of x.followers">
+                <ul class="list-group list-group-flush "  >
+                  <li class="list-group-item border rounded mx-3 px-2" [routerLink]="['/viewprofile/{x.userid}']" >
+                    <ng-container *ngFor="let z of y.UserInfo" >  
+                      <img class="rounded-circle border border-dark mx-4" src="{{z.profileTable[0].ProfileImageUrl}}" style="width: 60px;height:60px;" alt="profileimg">
+                      <span class="fs-5">{{z.userName}}</span>
+                    </ng-container>
+                  </li>
+                </ul>
+              </div>
+            </ng-container>
+        </div>
     </div>
 </div>

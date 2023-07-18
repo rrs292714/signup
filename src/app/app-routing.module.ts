@@ -9,6 +9,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { ProfileformComponent } from './profileform/profileform.component';
 import { RegisterComponent } from './register/register.component';
 import { StartpageComponent } from './startpage/startpage.component';
+import { ViewprofileComponent } from './viewprofile/viewprofile.component';
 
 const routes: Routes = [
   {path:'',component:ProfileformComponent,
@@ -24,7 +25,8 @@ const routes: Routes = [
   {path:'profile',component:ProfileComponent},
   {path:'post',component:PostpageComponent},
   {path:'notifications',component:NotificationComponent},
-  {path:'createpost',component:CreatePostComponent}
+  {path:'createpost',component:CreatePostComponent},
+  {path:'viewprofile',component:ViewprofileComponent}
 ]}
 ];
 
