@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { ApiService } from '../services/api.service';
 
 @Component({
@@ -10,20 +11,15 @@ export class ChatComponent implements OnInit {
 chatusers!:any;
 userdata:any[]=[];
 user1:any[]=[]
-  constructor(private api:ApiService){
-    
+userName!:any;
+  constructor(private api:ApiService,private route:ActivatedRoute){
+    this.userName=this.route.snapshot.paramMap.get("userName");   
   }
   async ngOnInit(){
+
     var res=await this.api.getchatusers(11).toPromise()
       console.log(res);  
       this.chatusers=res;
       console.log(this.chatusers); 
-
-    for(let i of this.chatusers){
-        this.api.getpost(i).subscribe(x=>{
-          this.userdata.push(x);
-        });   
-    }
-    console.log(this.userdata);
   };
 }

@@ -69,4 +69,9 @@ export class ApiService {
   getchatusers(senderId:number){
     return this.http.get('https://localhost:7200/api/Chat/userchat?id='+senderId)
   }
+
+  postchat(formdata:any){
+    return this.http.post('https://localhost:7200/api/Chat',formdata)
+  }
+
 }

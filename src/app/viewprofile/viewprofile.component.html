@@ -61,7 +61,7 @@
     <div class="modal-body mx-auto">
       <div class="my-2 " style="width: 18rem;"  *ngFor="let y of x.following">
         <p>{{y|json}}</p>
-        <ul class="list-group list-group-flush "  >
+        <ul class="list-group list-group-flush ">
           <li class="list-group-item" >
             <ng-container *ngFor="let z of y.UserInfo" >  
               <img class="rounded-circle border border-dark my-2 mx-4" src="{{z.profileTable[0].ProfileImageUrl}}" style="width: 60px;height: 60px;" alt="profileimg">

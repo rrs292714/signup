@@ -1,6 +1,6 @@
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -24,6 +24,7 @@ import { CreatePostComponent } from './create-post/create-post.component';
 import { MatRadioModule } from '@angular/material/radio';
 import { ViewprofileComponent } from './viewprofile/viewprofile.component';
 import { ChatComponent } from './chat/chat.component';
+import { MessagesComponent } from './messages/messages.component';
 
 
 @NgModule({
@@ -42,7 +43,8 @@ import { ChatComponent } from './chat/chat.component';
     NotificationComponent,
     CreatePostComponent,
     ViewprofileComponent,
-    ChatComponent
+    ChatComponent,
+    MessagesComponent
   ],
   imports: [
     BrowserModule,
@@ -54,7 +56,8 @@ import { ChatComponent } from './chat/chat.component';
     MatFormFieldModule,
     MatInputModule,
     MatRadioModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
