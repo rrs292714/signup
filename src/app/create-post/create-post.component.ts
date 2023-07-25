@@ -100,7 +100,7 @@ export class CreatePostComponent {
     this.images_object.media = this.imagedata;
     
     try {
-      const res = await this.http.post('https://localhost:7200/api/Post/post?userid=' + 11, this.images_object).toPromise();
+      const res = await this.http.post('https://localhost:7200/api/Post/post?userid=' + 12, this.images_object).toPromise();
       console.log(res);
     } catch (error) {
       console.error('Error saving post:', error);

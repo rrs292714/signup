@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { ChatComponent } from './chat/chat.component';
 import { CreatePostComponent } from './create-post/create-post.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { LoginComponent } from './login/login.component';
@@ -26,8 +27,12 @@ const routes: Routes = [
   {path:'post',component:PostpageComponent},
   {path:'notifications',component:NotificationComponent},
   {path:'createpost',component:CreatePostComponent},
-  {path:'viewprofile',component:ViewprofileComponent}
+  {path:'chat',component:ChatComponent,
+children:[
+  {path:'chat/:id',component:ChatComponent}
 ]}
+]},
+{path:'viewprofile/:username',component:ViewprofileComponent}
 ];
 
 @NgModule({

@@ -11,12 +11,10 @@ export class ViewprofileComponent implements OnInit {
   id:any
   profiledata:any;
   constructor(private api:ApiService,private route:ActivatedRoute){
-    this.api.getpost(11).subscribe(x=>{
-      this.profiledata=this.api.dataparser(x)
-    })
   }
   ngOnInit(){
-    this.api.getpost(11).subscribe(x=>{
+    this.id=this.route.snapshot.paramMap.get("id");
+    this.api.getpost(this.id).subscribe(x=>{
       this.profiledata=this.api.dataparser(x)
     })
   }

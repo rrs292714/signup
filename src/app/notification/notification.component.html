@@ -1,1 +1,15 @@
-<p>notification works!</p>
+<p>{{requests|json}}</p>
+
+<div class="container">
+<h1 class="fs-2 text-center shadow p-3">Follow Requests</h1>
+
+<ng-container *ngFor="let x of requests">
+    <div class="text-center fs-4">
+      <span [routerLink]="['/viewprofile',(x.followerId)]"  > 
+        <img class="border border-dark rounded-circle mx-2 " src="{{x.profileImageUrl}}" alt="" style="width: 70px;height: 70px;"> 
+        {{x.userName}}  </span>
+      <button class="btn btn-primary shadow mx-2" (click)="accept(x.followerId)">Accept</button>  
+      <button class="btn btn-danger shadow mx-2" (click)="decline(x.followerId)">Decline</button>
+    </div>
+</ng-container>
+</div>

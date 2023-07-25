@@ -10,18 +10,17 @@ import { ApiService } from '../services/api.service';
 export class ProfileComponent implements OnInit{
   editform!:FormGroup;
 
-   profiledata:any;
-  constructor(private api:ApiService){
+  profiledata:any;
+   constructor(private api:ApiService){
     this.api.getpost(11).subscribe(x=>{
       this.profiledata=this.api.dataparser(x)
     })
   }
-  ngOnInit(){
-    this.api.getpost(11).subscribe(x=>{
-      this.profiledata=this.api.dataparser(x)
-    })
-  }
-
+   async ngOnInit(){
+    var res=await this.api.getpost(11).toPromise();
+      this.profiledata=this.api.dataparser(res)
+    }
+  
   editprofile(){
 
   }
@@ -29,6 +28,4 @@ export class ProfileComponent implements OnInit{
   submit(){
 
   }
-
-  
 }

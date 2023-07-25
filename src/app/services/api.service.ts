@@ -30,11 +30,43 @@ export class ApiService {
     return data1;
   }
 
+  getalluser(){
+    return this.http.get('https://localhost:7200/api/User/AllUsers')
+  }
+
+  usersuggestion(id:any){
+    return this.http.get('https://localhost:7200/api/User/Suggestions?id='+id)
+  }
+
   createprofile(formdata:any){
     return this.http.post('https://localhost:7200/api/User/createprofile',formdata);
   }
 
   getprofile(id:number){
     return this.http.get('https://localhost:7200/api/User/profile?id='+id)
+  }
+
+  followrequest(formdata:any){
+    return this.http.put('https://localhost:7200/api/User/follow',formdata)
+  }
+
+  getrequests(id:number){
+    return this.http.get('https://localhost:7200/api/User/Request?id='+id)
+  }
+
+  accept(formdata:any){
+    return this.http.put('https://localhost:7200/api/User/Accept',formdata)
+  }
+
+  unfollow(follower:number,following:number){
+    return this.http.delete('https://localhost:7200/api/User/unfollow?follower='+follower+'&following='+following)
+  }
+
+  getmessage(senderId:number,receiverId:number){
+    return this.http.get('https://localhost:7200/api/Chat/usermessage?senderId='+senderId+'&receiverId='+receiverId)
+  }
+
+  getchatusers(senderId:number){
+    return this.http.get('https://localhost:7200/api/Chat/userchat?id='+senderId)
   }
 }

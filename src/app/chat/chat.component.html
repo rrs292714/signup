@@ -1,0 +1,14 @@
+<div class="container">
+    <h1 class="fs-4 text-center">Messages</h1>
+    <div class="row">
+        <div class="col-4 border-end">
+        <div *ngFor="let x of userdata " class="m-2 border p-2 rounded" [routerLink]="['/chat', (x[0].userName)]">
+            <img src="{{x[0].profileImageUrl}}" class="rounded-circle border border-dark mx-2 " style="width: 60px; height: 60px;" alt="">
+            <span class="fs-5" >{{x[0].userName}}</span>      
+        </div>
+        </div>
+        <div class="col-8">
+          <router-outlet></router-outlet>
+        </div>
+    </div>
+</div>

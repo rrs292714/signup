@@ -1,3 +1,4 @@
+<div class="container">
 <ng-container *ngFor="let x of profiledata">
     <div class="my-2 d-flex justify-content-center">
       <h3 class="m-2">{{x.userName}}</h3>
@@ -23,7 +24,7 @@
       </div>
       </div>
 
-
+      
 <!-- Followers Modal -->
 <div class="modal fade" id="followers" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 <div class="modal-dialog">
@@ -34,8 +35,8 @@
     </div>
     <div class="modal-body mx-auto">
       <div class=" my-2 " style="width: 18rem;"  *ngFor="let y of x.followers">
-        <ul class="list-group list-group-flush "  >
-          <li class="list-group-item">
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item"  >
             <ng-container *ngFor="let z of y.UserInfo" >  
               <img class="rounded-circle border border-dark mx-4" src="{{z.profileTable[0].ProfileImageUrl}}" style="width: 60px;height:60px;" alt="profileimg">
               <span class="fs-5">{{z.userName}}</span>
@@ -59,8 +60,9 @@
     </div>
     <div class="modal-body mx-auto">
       <div class="my-2 " style="width: 18rem;"  *ngFor="let y of x.following">
+        <p>{{y|json}}</p>
         <ul class="list-group list-group-flush "  >
-          <li class="list-group-item">
+          <li class="list-group-item" >
             <ng-container *ngFor="let z of y.UserInfo" >  
               <img class="rounded-circle border border-dark my-2 mx-4" src="{{z.profileTable[0].ProfileImageUrl}}" style="width: 60px;height: 60px;" alt="profileimg">
               <span class="fs-5">{{z.userName}}</span>
@@ -123,3 +125,4 @@
 </div>
 </div>
 </ng-container>
+</div>

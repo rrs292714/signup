@@ -23,6 +23,7 @@ import { NotificationComponent } from './notification/notification.component';
 import { CreatePostComponent } from './create-post/create-post.component';
 import { MatRadioModule } from '@angular/material/radio';
 import { ViewprofileComponent } from './viewprofile/viewprofile.component';
+import { ChatComponent } from './chat/chat.component';
 
 
 @NgModule({
@@ -40,7 +41,8 @@ import { ViewprofileComponent } from './viewprofile/viewprofile.component';
     ProfileformComponent,
     NotificationComponent,
     CreatePostComponent,
-    ViewprofileComponent
+    ViewprofileComponent,
+    ChatComponent
   ],
   imports: [
     BrowserModule,
