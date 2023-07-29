@@ -18,8 +18,8 @@ userName!:any;
   async ngOnInit(){
 
     var res=await this.api.getchatusers(11).toPromise()
-      console.log(res);  
+      console.log(res);
       this.chatusers=res;
-      console.log(this.chatusers); 
+      console.log(this.chatusers);
   };
 }

@@ -13,6 +13,11 @@ export class ApiService {
 
   dataparser(data1: any) {
     for (let i of data1) {
+
+      if(i.media){
+        let x = JSON.parse(i.media);
+        i.media = x;
+      }
       if (i.post) {
         let x = JSON.parse(i.post);
         i.post = x;
@@ -74,4 +79,15 @@ export class ApiService {
     return this.http.post('https://localhost:7200/api/Chat',formdata)
   }
 
+  deletemessage(id:number){
+    return this.http.delete('https://localhost:7200/api/Chat/delete?id='+id)
+  }
+
+  homepagepost(id:number){
+    return this.http.get('https://localhost:7200/api/Post/HomePagePost?userId='+id)
+  }
+
+  searching(username:string){
+    return this.http.get('https://localhost:7200/api/User/Searching?userName='+username)
+  }
 }

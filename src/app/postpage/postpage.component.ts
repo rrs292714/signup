@@ -10,6 +10,7 @@ export class PostpageComponent {
   loginUserId:number=11;
   profiledata:any;
   requeststatus:boolean=true;
+  postdata!:any;
 
   req_object={
     followerId: this.loginUserId,
@@ -21,7 +22,9 @@ export class PostpageComponent {
     this.api.usersuggestion(11).subscribe(x=>{
       this.profiledata=this.api.dataparser(x)
     })
-    
+    this.api.homepagepost(11).subscribe(x=>{
+      this.postdata=this.api.dataparser(x);
+    })
   }
   async ngOnInit(){
     try{

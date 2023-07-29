@@ -1,12 +1,32 @@
 <div class="row">
     <div class="col-lg-9 my-2">
-        <div class="container">
-            <div class="card mx-auto" style="width:50vw;">
-                    <div class="d-flex m-2 border-bottom border-secondary   ">
-                        <img src="" class="rounded-circle border bordrer-dark" style="width: 50px ;" alt="profile img">
-                        <h5 class="card-title mt-3"></h5>
+        <div class="container" *ngFor="let x of postdata">
+            <div class="card mx-auto my-2" style="width:50vw;">
+                    <div class="d-flex m-2 border-bottom border-secondary">
+                       <span class="fs-5" [routerLink]="['/viewprofile',(x.userId)]" routerLinkActive="router-link-active" >
+                        <img src="{{x.profileImageUrl}}" class="rounded-circle shadow" style="width: 60px ;height: 60px;" alt="profile img">
+                        {{x.userName}}
+                       </span>
                     </div>
-                        <img src="" class="card-img-top border-bottom border-secondary" alt="postimage">
+                    
+                    <div [id]="x.postId" class="carousel slide">
+                      <div class="carousel-inner">
+                        <ng-container *ngFor="let y of x.media; let i = index">
+                          <div class="carousel-item" [class.active]="i === 0">
+                            <img src="{{y.MediaUrl}}" class="d-block w-100" alt="postImage">
+                          </div>
+                        </ng-container>
+                      </div>
+                      <button class="carousel-control-prev" type="button" [attr.data-bs-target]="'#'+x.postId" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                      </button>
+                      <button class="carousel-control-next" type="button" [attr.data-bs-target]="'#'+x.postId" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                      </button>
+                    </div>
+                    
                         <div class="card-body ">
                             <div class="d-flex border-bottom ">
                                     <svg (click)="like()" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-suit-heart " viewBox="0 0 16 16">
@@ -21,14 +41,14 @@
                                       <path d="M15.854.146a.5.5 0 0 1 .11.54l-5.819 14.547a.75.75 0 0 1-1.329.124l-3.178-4.995L.643 7.184a.75.75 0 0 1 .124-1.33L15.314.037a.5.5 0 0 1 .54.11ZM6.636 10.07l2.761 4.338L14.13 2.576 6.636 10.07Zm6.787-8.201L1.591 6.602l4.339 2.76 7.494-7.493Z"/>
                                     </svg>
                             </div>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                            <p class="card-text"><span class="fw-bold">{{x.userName}}</span> {{x.caption}}</p>
                         </div>
                 </div>
         </div>
     </div>
 
 <!-- suggestion list -->
-    <div class="col lg-3">
+    <div class="col lg-3 my-3">
         <div class="container border-start">
             <h1 class="text-center">Suggestions</h1>
             <div class=" my-2 "  *ngFor="let x of profiledata">

@@ -1,0 +1,18 @@
+<div class="container">
+<div class="input-group my-3 shadow">
+    <input type="text" class="form-control rounded" aria-label="Sizing example input" (input)="searching($event)" [(ngModel)]="search" aria-describedby="inputGroup-sizing-default" placeholder="Search">
+</div>
+<div *ngFor="let x of searcheddata">
+    <div class="row shadow rounded m-3 p-2" [routerLink]="['/viewprofile',(x.userId)]" routerLinkActive="router-link-active" >
+        <div class="col-lg-2 text-end">
+
+            <img src="{{x.profileImageUrl}}" class="rounded-circle" style="width: 60px;height: 60px;" alt="profileimage">
+        </div>
+        <div class="col-lg-10">
+            <span class="fs-5">{{x.userName}}</span>
+            <p class="fs-5 my-2">{{x.fullName}}</p>
+        </div>
+    
+   </div>
+</div>
+</div>

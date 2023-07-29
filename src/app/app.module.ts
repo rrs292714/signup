@@ -25,6 +25,7 @@ import { MatRadioModule } from '@angular/material/radio';
 import { ViewprofileComponent } from './viewprofile/viewprofile.component';
 import { ChatComponent } from './chat/chat.component';
 import { MessagesComponent } from './messages/messages.component';
+import { SearchingComponent } from './searching/searching.component';
 
 
 @NgModule({
@@ -44,7 +45,8 @@ import { MessagesComponent } from './messages/messages.component';
     CreatePostComponent,
     ViewprofileComponent,
     ChatComponent,
-    MessagesComponent
+    MessagesComponent,
+    SearchingComponent
   ],
   imports: [
     BrowserModule,

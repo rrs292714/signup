@@ -13,7 +13,7 @@ export class MessagesComponent implements OnInit {
   loginedUser:any=11;
   allmessages!:any;
   message!:any;
-
+deleteid!:number;
 
   constructor(private api:ApiService,private route:ActivatedRoute){}
 
@@ -30,13 +30,11 @@ export class MessagesComponent implements OnInit {
     });
   }
 
-  
   message_form={
     senderId: this.loginedUser,
     receiverId: this.id,
     message: this.message
   }
-
 
   sendMessage(){
     this.message_form.receiverId=this.id;
@@ -50,5 +48,27 @@ export class MessagesComponent implements OnInit {
       })
     })
     this.message='';
+  }
+
+  deletemessageid(id:number){
+    this.deleteid=id;
+    console.log(this.deleteid);
+  }
+
+ delete(){
+  
+  this.api.deletemessage(this.deleteid).subscribe({
+    next:(res=>{   
+        this.api.getmessage(this.loginedUser,this.id).subscribe(x=>{
+          this.allmessages=x;
+        });    
+    }),
+    error:(error=>{    
+        this.api.getmessage(this.loginedUser,this.id).subscribe(x=>{
+          this.allmessages=x;
+        });   
+    })
+  })
+    
   }
 }
