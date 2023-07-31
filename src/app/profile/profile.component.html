@@ -1,9 +1,8 @@
-  <p>{{profiledata|json}}</p>
+  <!-- <p>{{profiledata|json}}</p> -->
 
       <ng-container *ngFor="let x of profiledata">
-      <div class="my-2 d-flex justify-content-center">
-        <h3 class="m-2">{{x.userName}}</h3>
-        <button type="button" class="btn btn-secondary w-10" (click)="editprofile()"  data-bs-toggle="modal" data-bs-target="#exampleModal">Edit Profile</button>
+      <div class="my-2 d-flex justify-content-center shadow rounded-pill">
+        <h3 class="m-2 fs-4">{{x.userName}}</h3>
       </div>
         <div class="my-3">
             <img class="rounded-circle border border-dark border-2 my-2 mx-4" src="{{x.profileImageUrl}}" style="width: 120px;height:120px;" src="" alt="profileimg">
@@ -13,6 +12,7 @@
         </div>
         <h2 >{{x.fullName}}</h2>
         <p>{{x.bio}}</p>
+        <button class="btn btn-secondary w-100" (click)="editprofile()" data-bs-toggle="modal" data-bs-target="#exampleModal">Edit Profile</button>
         <div class="border border-bottom my-3 "></div>
 
         <div class="row">  
@@ -140,9 +140,9 @@
       <div class="modal-body">
         <form  [formGroup]="editform">
           <div class="form-group">
-            <label for="Pname">Game Id:</label>
+            <label for="Pname">profileImage</label>
             <input
-              type="text"
+              type="File"
               name="Gname"
               id="Gname"
               class="form-control"
@@ -150,7 +150,7 @@
             />
           </div>
           <div class="form-group">
-            <label for="Pname">Game Name:</label>
+            <label for="Pname">Full Name</label>
             <input
               type="text"
               name="Gname"
@@ -161,7 +161,7 @@
           </div>
 
           <div class="form-group">
-            <label for="Pdescription">Game Price:</label>
+            <label for="Pdescription">Bio</label>
             <input
               type="text"
               name="Gprice"

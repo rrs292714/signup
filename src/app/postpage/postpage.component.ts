@@ -11,11 +11,19 @@ export class PostpageComponent {
   profiledata:any;
   requeststatus:boolean=true;
   postdata!:any;
+  likedpost:any[]=[]
+  id:number=0;
 
   req_object={
     followerId: this.loginUserId,
     followingId: 0,
     connectionStatus: "string"
+  }
+
+  like_object={
+    userId: this.loginUserId,
+    postId: 0,
+    likeStatus: 0
   }
 
   constructor(private api:ApiService){
@@ -25,6 +33,7 @@ export class PostpageComponent {
     this.api.homepagepost(11).subscribe(x=>{
       this.postdata=this.api.dataparser(x);
     })
+    
   }
   async ngOnInit(){
     try{
@@ -36,15 +45,20 @@ export class PostpageComponent {
     }
   }
 
-  like(){
-    alert("liked");
+  like(id:number){
+    this.like_object.postId=id;
+    this.api.likepost(this.like_object).subscribe(x=>{
+      this.api.homepagepost(11).subscribe(x=>{
+      this.postdata=this.api.dataparser(x)
+      })
+    })
   }
 
   request(id:number){
     alert(id)
     this.req_object.followingId=id;
     this.api.followrequest(this.req_object).subscribe(x=>{
-     console.log(x)
+     console.log(x);
     })
   }
 }

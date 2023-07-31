@@ -15,7 +15,9 @@ export class MessagesComponent implements OnInit {
   message!:any;
 deleteid!:number;
 
-  constructor(private api:ApiService,private route:ActivatedRoute){}
+  constructor(private api:ApiService,private route:ActivatedRoute){
+    
+  }
 
   ngOnInit() {
     this.route.paramMap.subscribe(params => {

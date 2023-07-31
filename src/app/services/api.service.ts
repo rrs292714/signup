@@ -30,6 +30,10 @@ export class ApiService {
         let x = JSON.parse(i.following);
         i.following = x;
       }
+      if(i.likedUsers){
+        let x = JSON.parse(i.likedUsers);
+        i.likedUsers = x;
+      }
       
     }
     return data1;
@@ -89,5 +93,9 @@ export class ApiService {
 
   searching(username:string){
     return this.http.get('https://localhost:7200/api/User/Searching?userName='+username)
+  }
+
+  likepost(formdata:any){
+    return this.http.put('https://localhost:7200/api/Post/like',formdata);
   }
 }
