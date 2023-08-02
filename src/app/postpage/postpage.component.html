@@ -1,3 +1,5 @@
+<!-- <p>{{postdata|json}}</p> -->
+
 <div class="row">
     <div class="col-lg-9 my-2">
         <div class="container" *ngFor="let x of postdata">
@@ -27,31 +29,6 @@
                       </button>
                     </div>
                     
-                        <!-- <div class="card-body ">
-                            <div class="d-flex border-bottom ">
-                                             
-                              
-                              <div *ngIf="x.likedUsers==null">                             
-                              <img class="m-2" src="https://cdn-icons-png.flaticon.com/512/1077/1077035.png" (click)="like(x.postId)" style="width: 30px;height: 30px;" alt="">
-
-                              </div>
-                              <div *ngIf="x.likedUsers!=null ">
-                                <div *ngFor="let y of x.likedUsers">
-                                  <ng-container *ngIf="y.userId==loginUserId;else elseblock">
-                                    <img class="m-2" src="https://cdn-icons-png.flaticon.com/512/833/833472.png" (click)="like(x.postId)" style="width: 30px;height: 30px;" alt="">
-                                  </ng-container>
-                                  <ng-template #elseblock>
-                                    <img class="m-2" src="https://cdn-icons-png.flaticon.com/512/1077/1077035.png" (click)="like(x.postId)" style="width: 30px;height: 30px;" alt="">
-                                  </ng-template>
-                                </div>
-                              </div>
-                          
-                              <span *ngIf="x.likedUsers!=null" class="fs-6 mt-2">{{x.likeCount}} likes</span>
-                              <img class="m-2" src="https://cdn-icons-png.flaticon.com/512/3193/3193015.png" style="width: 30px;height: 30px;" alt="">
-                            </div>
-                            <p class="card-text"><span class="fw-bold">{{x.userName}}</span> {{x.caption}}</p>
-                            <p>{{x.likedUsers|json}}</p>
-                        </div> -->
                         <div class="card-body ">
                           <div class="d-flex border-bottom ">
                             <!-- Check if likedUsers is null -->
@@ -62,10 +39,31 @@
                               <img class="m-2" src="https://cdn-icons-png.flaticon.com/512/833/833472.png" (click)="like(x.postId)" style="width: 30px;height: 30px;" alt="">
                             </ng-template>
                             <span *ngIf="x.likedUsers!=null" class="fs-6 mt-2">{{x.likeCount}} likes</span>
-                            <img class="m-2" src="https://cdn-icons-png.flaticon.com/512/3193/3193015.png" style="width: 30px;height: 30px;" alt="">
+                            <img class="m-2" src="https://cdn-icons-png.flaticon.com/512/3193/3193015.png" (click)="comment(x.postId)" style="width: 30px;height: 30px;" alt="">
+                            <span class="fs-6 mt-2" *ngIf="x.commentCount>0" (click)="showComments(x.postId)">{{x.commentCount}} comments</span>
                           </div>
-                          <p class="card-text"><span class="fw-bold">{{x.userName}}</span> {{x.caption}}</p>
+                          <div class="input-group my-3 " *ngIf="commentbox==true && commentboxId==x.postId">
+                            <input type="text" class="form-control" placeholder="write your comment....." [(ngModel)]="commentText" aria-label="Username" aria-describedby="basic-addon1">
+                            <button class="btn btn-primary" (click)="SubmitComment(x.postId)">Comment</button>   
+                          </div>
+                          <div class="my-2">
+                            <p class="card-text"><span class="fw-bold">{{x.userName}}</span> {{x.caption}}</p>
+                          </div>
+
+                          <ng-container *ngFor="let item of commentsdata">
+                            <div class="container border border rounded m-2" *ngIf="showcomment==true && x.postId==item.postId" >
+                          <img class="border border-dark rounded-circle m-2" [src]="item.profileImageUrl" alt="" style="width: 40px ;height: 40px;">
+                          <span class="m-2">{{item.commentText}}</span>
+                          <div class="container text-end">
+                            <span class="btn border-light " (click)="Subcomment(item.commentId)">Reply</span>
+                          </div>
+                          <div class="input-group my-3 " *ngIf="subcommentbox==true && subcommentboxId==item.commentId">
+                            <input type="text" class="form-control" placeholder="write your comment....." [(ngModel)]="commentText" aria-label="Username" aria-describedby="basic-addon1">
+                            <button class="btn btn-primary" (click)="SubmitComment(x.postId)">Comment</button>   
+                          </div>
                         </div>
+                       </ng-container>
+                      </div>
                 </div>     
         </div>
     </div>

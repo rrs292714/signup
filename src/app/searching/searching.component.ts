@@ -25,7 +25,6 @@ searching(event :any){
   if(this.search==''){
     this.searcheddata=[]
   }
-  
 }
 
 }

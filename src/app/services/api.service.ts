@@ -40,11 +40,11 @@ export class ApiService {
   }
 
   getalluser(){
-    return this.http.get('https://localhost:7200/api/User/AllUsers')
+    return this.http.get('https://localhost:7200/api/User/AllUsers');
   }
 
   usersuggestion(id:any){
-    return this.http.get('https://localhost:7200/api/User/Suggestions?id='+id)
+    return this.http.get('https://localhost:7200/api/User/Suggestions?id='+id);
   }
 
   createprofile(formdata:any){
@@ -52,50 +52,62 @@ export class ApiService {
   }
 
   getprofile(id:number){
-    return this.http.get('https://localhost:7200/api/User/profile?id='+id)
+    return this.http.get('https://localhost:7200/api/User/profile?id='+id);
   }
 
   followrequest(formdata:any){
-    return this.http.put('https://localhost:7200/api/User/follow',formdata)
+    return this.http.put('https://localhost:7200/api/User/follow',formdata);
   }
 
   getrequests(id:number){
-    return this.http.get('https://localhost:7200/api/User/Request?id='+id)
+    return this.http.get('https://localhost:7200/api/User/Request?id='+id);
   }
 
   accept(formdata:any){
-    return this.http.put('https://localhost:7200/api/User/Accept',formdata)
+    return this.http.put('https://localhost:7200/api/User/Accept',formdata);
   }
 
   unfollow(follower:number,following:number){
-    return this.http.delete('https://localhost:7200/api/User/unfollow?follower='+follower+'&following='+following)
+    return this.http.delete('https://localhost:7200/api/User/unfollow?follower='+follower+'&following='+following);
   }
 
   getmessage(senderId:number,receiverId:number){
-    return this.http.get('https://localhost:7200/api/Chat/usermessage?senderId='+senderId+'&receiverId='+receiverId)
+    return this.http.get('https://localhost:7200/api/Chat/usermessage?senderId='+senderId+'&receiverId='+receiverId);
   }
 
   getchatusers(senderId:number){
-    return this.http.get('https://localhost:7200/api/Chat/userchat?id='+senderId)
+    return this.http.get('https://localhost:7200/api/Chat/userchat?id='+senderId);
   }
 
   postchat(formdata:any){
-    return this.http.post('https://localhost:7200/api/Chat',formdata)
+    return this.http.post('https://localhost:7200/api/Chat',formdata);
   }
 
   deletemessage(id:number){
-    return this.http.delete('https://localhost:7200/api/Chat/delete?id='+id)
+    return this.http.delete('https://localhost:7200/api/Chat/delete?id='+id);
   }
 
   homepagepost(id:number){
-    return this.http.get('https://localhost:7200/api/Post/HomePagePost?userId='+id)
+    return this.http.get('https://localhost:7200/api/Post/HomePagePost?userId='+id);
   }
 
   searching(username:string){
-    return this.http.get('https://localhost:7200/api/User/Searching?userName='+username)
+    return this.http.get('https://localhost:7200/api/User/Searching?userName='+username);
   }
 
   likepost(formdata:any){
     return this.http.put('https://localhost:7200/api/Post/like',formdata);
+  }
+
+  editprofile(formdata:any){
+    return this.http.put('https://localhost:7200/api/User/editprofile',formdata);
+  }
+
+  postcomment(formdata:any){
+    return this.http.post('https://localhost:7200/api/Post/comment',formdata);
+  }
+
+  getcomment(id:any){
+    return this.http.get('https://localhost:7200/api/Post/GetComment?postId='+id)
   }
 }
