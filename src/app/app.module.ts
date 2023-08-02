@@ -26,6 +26,7 @@ import { ViewprofileComponent } from './viewprofile/viewprofile.component';
 import { ChatComponent } from './chat/chat.component';
 import { MessagesComponent } from './messages/messages.component';
 import { SearchingComponent } from './searching/searching.component';
+import { MatIconModule } from '@angular/material/icon';
 
 
 @NgModule({
@@ -59,7 +60,8 @@ import { SearchingComponent } from './searching/searching.component';
     MatInputModule,
     MatRadioModule,
     BrowserAnimationsModule,
-    FormsModule
+    FormsModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]

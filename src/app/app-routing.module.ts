@@ -15,7 +15,7 @@ import { StartpageComponent } from './startpage/startpage.component';
 import { ViewprofileComponent } from './viewprofile/viewprofile.component';
 
 const routes: Routes = [
-  {path:'',component:ProfileformComponent,
+  {path:'',component:StartpageComponent,
    children:[
     {path:'',component:LoginComponent},
     {path:'login',component:LoginComponent},
