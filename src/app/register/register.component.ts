@@ -26,6 +26,7 @@ OnRegister(){
       this.auth.signup(this.RegisterForm.value)
       .subscribe({
         next:(res)=>{
+          this.auth.savetoken(res);
           this.route.navigateByUrl('/profileform');
         },
         error:(err=>{

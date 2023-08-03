@@ -14,13 +14,15 @@ export class PostpageComponent {
   postdata!:any;
   likedpost:any[]=[];
   id:number=0;
-  commentText!:string;
+  commentText:string='';
   commentbox:boolean=false;
   commentboxId!:number
   commentsdata!:any
   showcomment:boolean=false;
   subcommentbox:boolean=false;
   subcommentboxId!:any;
+  SubcommentText:string='';
+  subcommentdata!:any;
   req_object={
     followerId: this.loginUserId,
     followingId: 0,
@@ -37,6 +39,12 @@ export class PostpageComponent {
     userId:this.loginUserId,
     postId:0,
     commentText:""
+  }
+
+  subcomment_object={
+    userId: this.loginUserId,
+    commentId: 0,
+    subcommentText: ""
   }
 
   constructor(private api:ApiService ,private auth:AuthService){
@@ -90,9 +98,7 @@ export class PostpageComponent {
 
   comment(postId:number){
 
-      this.commentbox=true;
-    
-  
+    this.commentbox=true;
     this.commentboxId=postId;
   }
 
@@ -117,4 +123,22 @@ export class PostpageComponent {
     this.subcommentboxId=commentId; 
     this.subcommentbox=true;
   }
+
+
+  SubmitsubComment(commentId:any){
+    this.subcomment_object.userId=this.loginUserId;
+    this.subcomment_object.commentId=commentId;
+    this.subcomment_object.subcommentText=this.SubcommentText;
+    this.api.postSubcomment(this.subcomment_object).subscribe(x=>{
+      this.api.homepagepost(this.loginUserId).subscribe(x=>{
+        this.postdata=this.api.dataparser(x);
+      })
+      this.api.getSubcomment(commentId).subscribe(x=>{
+        this.subcommentdata=x;
+      })
+    })
+    this.SubcommentText=''
+  }
+
+  
 }

@@ -73,7 +73,7 @@ export class ProfileComponent implements OnInit{
       formData.append('name', this.selectedFile.name);
   
       try {
-        const response = await this.http.post('https://localhost:7200/api/Post/ImageUrl', formData).toPromise();
+        const response = await this.http.post('http://localhost:8000/api/Post/ImageUrl', formData).toPromise();
         console.log('File uploaded:', response);
         this.imagedata=response;
       } catch (error) {

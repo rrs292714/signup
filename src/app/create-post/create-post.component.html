@@ -39,7 +39,7 @@
         </div>
         
       <div *ngFor="let item of imageArray.controls;let i=index">
-         <input type="file" class="imgwid" id="profileimg" (change)="onFileSelected($event)" accept="image/*" [formControlName]="i" multiple/>
+         <input type="file" class="imgwid" id="profileimg" (change)="onFileSelected($event)" [formControlName]="i" multiple/>
       </div>
       <br/>
       <label for="profileimg">

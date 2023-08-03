@@ -34,8 +34,7 @@ export class ApiService {
       if(i.likedUsers){
         let x = JSON.parse(i.likedUsers);
         i.likedUsers = x;
-      }
-      
+      } 
     }
     return data1;
   }
@@ -110,5 +109,13 @@ export class ApiService {
 
   getcomment(id:any){
     return this.http.get(this.baseUrl+'/Post/GetComment?postId='+id)
+  }
+
+  postSubcomment(formdata:any){
+    return this.http.post(this.baseUrl+'/Post/SubComment',formdata)
+  }
+
+  getSubcomment(commentId:number){
+    return this.http.get(this.baseUrl+'/Post/getSubComment?commentId='+commentId)
   }
 }

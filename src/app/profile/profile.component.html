@@ -15,14 +15,14 @@
         <div class="border border-bottom my-3 "></div>
 
         <div class="row">  
-        <div class="col-lg-4 col-md-12 mb-4 mb-lg-0 d-flex">
+    
           <ng-container *ngFor="let y of x.post">
-            <div style="width: 300px; height: 300px;" class="mx-3">
-              <img class="border border-dark rounded" src="{{y.postMedia[0].MediaUrl}}" alt="hello" style="width: 300px; height: 300px;" data-bs-toggle="modal" data-bs-target="#postmodal">
+            <div class="col col-lg-4 my-3  "style="width: 300px; height: 300px;" >
+              <img class="border border-dark rounded my-3" src="{{y.postMedia[0].MediaUrl}}" alt="hello" style="width: 300px; height: 300px;" data-bs-toggle="modal" data-bs-target="#postmodal">
 
-            </div>
+            </div><br>
           </ng-container>
-        </div>
+        
         </div>
 
 
@@ -59,7 +59,7 @@
         <h1 class="modal-title fs-5" id="exampleModalLabel">Following</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <div class="modal-body mx-auto">
+      <div class=" modal-body mx-auto">
         <div class="my-2 " style="width: 18rem;"  *ngFor="let y of x.following">
           <ul class="list-group list-group-flush "  >
             <li class="list-group-item" [routerLink]="['/viewprofile',(y.followingId)]" routerLinkActive="router-link-active" data-bs-dismiss="modal">
@@ -81,7 +81,7 @@
 
 
 <!-- Post Modal -->
-<div class="modal fade" id="postmodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<!-- <div class="modal fade" id="postmodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -123,7 +123,7 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->
 </ng-container>
 
 

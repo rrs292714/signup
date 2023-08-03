@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment.development';
 import { ApiService } from '../services/api.service';
 import { AuthService } from '../services/auth.service';
 
@@ -74,7 +75,7 @@ export class ProfileformComponent {
       formData.append('name', this.selectedFile.name);
   
       try {
-        const response = await this.http.post('https://localhost:7200/api/Post/ImageUrl', formData).toPromise();
+        const response = await this.http.post(environment.apiUrl+'/Post/ImageUrl', formData).toPromise();
         console.log('File uploaded:', response);
         this.imagedata=response;
       } catch (error) {

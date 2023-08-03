@@ -43,8 +43,8 @@
                             <span class="fs-6 mt-2" *ngIf="x.commentCount>0" (click)="showComments(x.postId)">{{x.commentCount}} comments</span>
                           </div>
                           <div class="input-group my-3 " *ngIf="commentbox==true && commentboxId==x.postId">
-                            <input type="text" class="form-control" placeholder="write your comment....." [(ngModel)]="commentText" aria-label="Username" aria-describedby="basic-addon1">
-                            <button class="btn btn-primary" (click)="SubmitComment(x.postId)">Comment</button>   
+                            <input type="text" class="form-control" placeholder="write your comment....." [(ngModel)]="commentText"  aria-label="Username" aria-describedby="basic-addon1">
+                            <button class="btn btn-primary" (click)="SubmitComment(x.postId)" [disabled]="commentText.length == 0">Comment</button>   
                           </div>
                           <div class="my-2">
                             <p class="card-text"><span class="fw-bold">{{x.userName}}</span> {{x.caption}}</p>
@@ -58,8 +58,8 @@
                             <span class="btn border-light " (click)="Subcomment(item.commentId)">Reply</span>
                           </div>
                           <div class="input-group my-3 " *ngIf="subcommentbox==true && subcommentboxId==item.commentId">
-                            <input type="text" class="form-control" placeholder="write your comment....." [(ngModel)]="commentText" aria-label="Username" aria-describedby="basic-addon1">
-                            <button class="btn btn-primary" (click)="SubmitComment(x.postId)">Comment</button>   
+                            <input type="text" class="form-control" placeholder="write your comment....." [(ngModel)]="SubcommentText" aria-label="Username" aria-describedby="basic-addon1">
+                            <button class="btn btn-primary" (click)="SubmitsubComment(item.commentId)" [disabled]="SubcommentText.length == 0">Comment</button>   
                           </div>
                         </div>
                        </ng-container>

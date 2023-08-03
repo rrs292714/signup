@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
+import { environment } from 'src/environments/environment.development';
 import { AuthService } from '../services/auth.service';
 
 @Component({
@@ -91,7 +92,7 @@ export class CreatePostComponent {
       formData.append('name', file.name);
   
       try {
-        const response = await this.http.post('https://localhost:7200/api/Post/ImageUrl', formData).toPromise();
+        const response = await this.http.post(environment.apiUrl+'/Post/ImageUrl', formData).toPromise();
         console.log('File uploaded:', response);
         this.imagedata.push(response);
       } catch (error) {
@@ -103,7 +104,7 @@ export class CreatePostComponent {
     this.images_object.media = this.imagedata;
     
     try {
-      const res = await this.http.post('https://localhost:7200/api/Post/post?userid=' + this.userId, this.images_object).toPromise();
+      const res = await this.http.post(environment.apiUrl+'/Post/post?userid=' + this.userId, this.images_object).toPromise();
       console.log(res);
     } catch (error) {
       console.error('Error saving post:', error);
