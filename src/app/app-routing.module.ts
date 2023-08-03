@@ -13,6 +13,7 @@ import { RegisterComponent } from './register/register.component';
 import { SearchingComponent } from './searching/searching.component';
 import { StartpageComponent } from './startpage/startpage.component';
 import { ViewprofileComponent } from './viewprofile/viewprofile.component';
+import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.component';
 
 const routes: Routes = [
   {path:'',component:StartpageComponent,
@@ -20,8 +21,8 @@ const routes: Routes = [
     {path:'',component:LoginComponent},
     {path:'login',component:LoginComponent},
     {path:'register',component:RegisterComponent},
-    
   ]},
+  {path:'forgotpassword',component:ForgotpasswordComponent},
   {path:'profileform', component:ProfileformComponent},
   {path:'home',component:HomepageComponent,
   children:[

@@ -25,7 +25,6 @@ export class CreatePostComponent {
   }
 
   ngOnInit() {
-
     this.userId=this.auth.getId();
     this.firstFormGroup = this._formBuilder.group({
       image: this._formBuilder.array([], Validators.required)

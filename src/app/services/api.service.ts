@@ -118,4 +118,8 @@ export class ApiService {
   getSubcomment(commentId:number){
     return this.http.get(this.baseUrl+'/Post/getSubComment?commentId='+commentId)
   }
+
+  getotp(email:string){
+    return this.http.get(this.baseUrl+'/Auth/Otp/'+email)
+  }
 }

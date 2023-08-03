@@ -27,6 +27,7 @@ import { ChatComponent } from './chat/chat.component';
 import { MessagesComponent } from './messages/messages.component';
 import { SearchingComponent } from './searching/searching.component';
 import { MatIconModule } from '@angular/material/icon';
+import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.component';
 
 
 @NgModule({
@@ -47,7 +48,8 @@ import { MatIconModule } from '@angular/material/icon';
     ViewprofileComponent,
     ChatComponent,
     MessagesComponent,
-    SearchingComponent
+    SearchingComponent,
+    ForgotpasswordComponent
   ],
   imports: [
     BrowserModule,

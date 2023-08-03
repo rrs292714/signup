@@ -21,20 +21,102 @@ ngOnInit(){
   });
 }
 
-OnRegister(){
-    if(this.RegisterForm.valid){
-      this.auth.signup(this.RegisterForm.value)
-      .subscribe({
-        next:(res)=>{
-          this.auth.savetoken(res);
-          this.route.navigateByUrl('/profileform');
+login_form=
+  {
+    userName:'',
+    password:'' 
+  }
+
+
+  // OnRegister() {
+  //   if (this.RegisterForm.valid) {
+  //     const { UserName, Password } = this.RegisterForm.value;
+
+  //     this.auth.signup(this.RegisterForm.value).subscribe({
+  //       next: (res) => {
+  //         this.login_form.userName = UserName;
+  //         this.login_form.password = Password;
+
+  //         this.auth.login(this.login_form).subscribe({
+  //           next: (res => {
+  //             this.auth.savetoken(res);
+  //             // alert("login")
+  //             // this.route.navigate(['/home'])
+  //             this.route.navigateByUrl('/profileform');
+  //           }),
+  //           error: (err => {
+  //             // Handle login error
+  //           })
+  //         });
+  //       },
+  //       error: (err => {
+  //         alert(err.error.message);
+  //       })
+  //     });
+  //   }
+  // }
+  OnRegister() {
+    if (this.RegisterForm.valid) {
+      const { UserName, Password } = this.RegisterForm.value;
+  
+      this.auth.signup(this.RegisterForm.value).subscribe({
+        next: (res) => {
+          this.login_form.userName = UserName;
+          this.login_form.password = Password;
+  
+          this.auth.login(this.login_form).subscribe({
+            next: (res => {
+              this.auth.savetoken(res);
+              // alert("login")
+              // this.route.navigate(['/home'])
+              this.route.navigateByUrl('/profileform');
+            }),
+            error: (err => {
+              // Handle login error
+            })
+          });
         },
-        error:(err=>{
-          alert(err.error.message)
+        error: (err => {
+          if (err.error && err.error.includes("UserName already exist")) {
+            // Handle duplicate username error
+            // For example, show a message to the user asking them to choose a different username
+            alert("Username already exists. Please choose a different username.");
+          } else {
+            // Handle other errors
+            alert(err.error.message);
+          }
         })
-      })
+      });
     }
-}
+  }
+  
+// OnRegister(){
+//     if(this.RegisterForm.valid){
+//       this.auth.signup(this.RegisterForm.value)
+//       .subscribe({
+//         next:(res)=>{
+//           this.login_form.userName=this.RegisterForm.value.userName;
+//           this.login_form.password=this.RegisterForm.value.password;
+//           this.auth.login(this.login_form)
+//           .subscribe({
+//             next:(res=>{
+//               this.auth.savetoken(res);
+//               // alert("login")
+//               // this.route.navigate(['/home'])
+//              this.route.navigateByUrl('/profileform');
+
+//             }),
+//             error:(err=>{
+//               // alert("ERROR")
+//             })
+//           })
+//         },
+//         error:(err=>{
+//           alert(err.error.message)
+//         })
+//       })
+//     }
+// }
 
 get FirstName(){
   return this.RegisterForm.get('FirstName');
