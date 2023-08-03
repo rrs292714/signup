@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-create-post',
@@ -8,7 +9,7 @@ import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
   styleUrls: ['./create-post.component.css']
 })
 export class CreatePostComponent {
-  constructor(private _formBuilder: FormBuilder,private http:HttpClient) {}
+  constructor(private _formBuilder: FormBuilder,private http:HttpClient,private auth:AuthService) {}
 
   firstFormGroup!: FormGroup;
   secondFormGroup!: FormGroup;
@@ -16,13 +17,15 @@ export class CreatePostComponent {
   selectedFileUrl: any[] = [];
   imagedata:any[]=[];
   caption!:string;
-
+  userId!:any;
   images_object={
    caption:'',
    media:this.imagedata
   }
 
   ngOnInit() {
+
+    this.userId=this.auth.getId();
     this.firstFormGroup = this._formBuilder.group({
       image: this._formBuilder.array([], Validators.required)
     });
@@ -100,7 +103,7 @@ export class CreatePostComponent {
     this.images_object.media = this.imagedata;
     
     try {
-      const res = await this.http.post('https://localhost:7200/api/Post/post?userid=' + 12, this.images_object).toPromise();
+      const res = await this.http.post('https://localhost:7200/api/Post/post?userid=' + this.userId, this.images_object).toPromise();
       console.log(res);
     } catch (error) {
       console.error('Error saving post:', error);

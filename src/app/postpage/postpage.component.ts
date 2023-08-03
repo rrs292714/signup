@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ApiService } from '../services/api.service';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-postpage',
@@ -7,7 +8,7 @@ import { ApiService } from '../services/api.service';
   styleUrls: ['./postpage.component.css']
 })
 export class PostpageComponent {
-  loginUserId:number=11;
+  loginUserId!:any;
   profiledata:any;
   requeststatus:boolean=true;
   postdata!:any;
@@ -38,18 +39,21 @@ export class PostpageComponent {
     commentText:""
   }
 
-  constructor(private api:ApiService){
-    this.api.usersuggestion(11).subscribe(x=>{
+  constructor(private api:ApiService ,private auth:AuthService){
+    this.loginUserId=this.auth.getId();
+
+    this.api.usersuggestion(this.loginUserId).subscribe(x=>{
       this.profiledata=this.api.dataparser(x)
     })
-    this.api.homepagepost(11).subscribe(x=>{
+    this.api.homepagepost(this.loginUserId).subscribe(x=>{
       this.postdata=this.api.dataparser(x);
     })
     
   }
   async ngOnInit(){
+    this.loginUserId=this.auth.getId();
     try{
-    var res=await this.api.usersuggestion(11).toPromise();
+    var res=await this.api.usersuggestion(this.loginUserId).toPromise();
       this.profiledata=this.api.dataparser(res)
     }
     catch{
@@ -58,16 +62,18 @@ export class PostpageComponent {
   }
 
   like(id:number){
+    this.like_object.userId=this.loginUserId;
     this.like_object.postId=id;
     this.api.likepost(this.like_object).subscribe(x=>{
-      this.api.homepagepost(11).subscribe(x=>{
+      this.api.homepagepost(this.loginUserId).subscribe(x=>{
       this.postdata=this.api.dataparser(x)
       })
     })
   }
 
   request(id:number){
-    alert(id)
+    
+    this.req_object.followerId=this.loginUserId;
     this.req_object.followingId=id;
     this.api.followrequest(this.req_object).subscribe(x=>{
      console.log(x);
@@ -92,10 +98,11 @@ export class PostpageComponent {
 
 
   SubmitComment(postId:number){
+    this.comment_object.userId=this.loginUserId;
     this.comment_object.postId=postId;
     this.comment_object.commentText=this.commentText
     this.api.postcomment(this.comment_object).subscribe(x=>{
-      this.api.homepagepost(11).subscribe(x=>{
+      this.api.homepagepost(this.loginUserId).subscribe(x=>{
         this.postdata=this.api.dataparser(x);
       })
       this.api.getcomment(postId).subscribe(x=>{

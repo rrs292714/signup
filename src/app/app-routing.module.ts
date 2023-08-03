@@ -22,6 +22,7 @@ const routes: Routes = [
     {path:'register',component:RegisterComponent},
     
   ]},
+  {path:'profileform', component:ProfileformComponent},
   {path:'home',component:HomepageComponent,
   children:[
   {path:'',component:PostpageComponent},

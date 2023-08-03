@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ApiService } from '../services/api.service';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-messages',
@@ -10,16 +11,20 @@ import { ApiService } from '../services/api.service';
 export class MessagesComponent implements OnInit {
   id!:any;
   userdata!:any;
-  loginedUser:any=11;
+  loginedUser!:any;
   allmessages!:any;
   message!:any;
-deleteid!:number;
+  deleteid!:number;
 
-  constructor(private api:ApiService,private route:ActivatedRoute){
+  constructor(private api:ApiService,private route:ActivatedRoute,private auth:AuthService){
+    this.loginedUser=this.auth.getIDD();
     
+    console.log(this.loginedUser);
   }
 
   ngOnInit() {
+    this.loginedUser=this.auth.getIDD();
+
     this.route.paramMap.subscribe(params => {
       this.id = params.get("id");
       console.log(this.id);
@@ -39,6 +44,7 @@ deleteid!:number;
   }
 
   sendMessage(){
+    this.message_form.senderId=this.loginedUser;
     this.message_form.receiverId=this.id;
     this.message_form.message=this.message;
     console.log(this.message);   

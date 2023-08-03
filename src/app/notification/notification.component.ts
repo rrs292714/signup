@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ApiService } from '../services/api.service';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-notification',
@@ -10,8 +11,8 @@ import { ApiService } from '../services/api.service';
 })
 export class NotificationComponent implements OnInit {
   requests!:any;
-  loginedUser:number=12;
-  constructor(private api:ApiService,private route:ActivatedRoute){}
+  loginedUser!:any;
+  constructor(private api:ApiService,private route:ActivatedRoute,private auth:AuthService){}
   req_object={
     followerId: this.loginedUser,
     followingId: 0,
@@ -22,7 +23,8 @@ export class NotificationComponent implements OnInit {
     followingId: 0
   }
   ngOnInit() {
-   this.api.getrequests(12).subscribe(x=>{
+    this.loginedUser=this.auth.getId();
+   this.api.getrequests(this.loginedUser).subscribe(x=>{
     this.requests=x;
    })
   }
@@ -33,7 +35,7 @@ export class NotificationComponent implements OnInit {
     console.log(id);
     console.log(this.loginedUser)
     this.api.accept(this.req_object).subscribe(x=>{
-      this.api.getrequests(12).subscribe(x=>{
+      this.api.getrequests(this.loginedUser).subscribe(x=>{
         this.requests=x;
        })
     })
@@ -43,12 +45,12 @@ export class NotificationComponent implements OnInit {
     console.log(id);
     this.api.unfollow(id,this.loginedUser).subscribe({
       next:(res=>{
-        this.api.getrequests(12).subscribe(x=>{
+        this.api.getrequests(this.loginedUser).subscribe(x=>{
           this.requests=x;
          })
       }),
       error:(err=>{
-        this.api.getrequests(12).subscribe(x=>{
+        this.api.getrequests(this.loginedUser).subscribe(x=>{
           this.requests=x;
         })
       })

@@ -24,11 +24,11 @@ Onlogin(){
     .subscribe({
       next:(res=>{
         this.auth.savetoken(res);
-        alert("login")
+        // alert("login")
         this.route.navigate(['/home'])
       }),
       error:(err=>{
-        alert("ERROR")
+        // alert("ERROR")
       })
     })
   }

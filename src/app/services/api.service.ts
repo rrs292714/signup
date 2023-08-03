@@ -1,14 +1,15 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from 'src/environments/environment.development';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService {
   constructor(private http: HttpClient) {}
-
+  baseUrl:string=environment.apiUrl;
   getpost(id: number) {
-    return this.http.get('https://localhost:7200/api/User/profile?id='+id);
+    return this.http.get(this.baseUrl+'/User/profile?id='+id);
   }
 
   dataparser(data1: any) {
@@ -40,74 +41,74 @@ export class ApiService {
   }
 
   getalluser(){
-    return this.http.get('https://localhost:7200/api/User/AllUsers');
+    return this.http.get(this.baseUrl+'/User/AllUsers');
   }
 
   usersuggestion(id:any){
-    return this.http.get('https://localhost:7200/api/User/Suggestions?id='+id);
+    return this.http.get(this.baseUrl+'/User/Suggestions?id='+id);
   }
 
   createprofile(formdata:any){
-    return this.http.post('https://localhost:7200/api/User/createprofile',formdata);
+    return this.http.post(this.baseUrl+'/User/createprofile',formdata);
   }
 
   getprofile(id:number){
-    return this.http.get('https://localhost:7200/api/User/profile?id='+id);
+    return this.http.get(this.baseUrl+'/User/profile?id='+id);
   }
 
   followrequest(formdata:any){
-    return this.http.put('https://localhost:7200/api/User/follow',formdata);
+    return this.http.put(this.baseUrl+'/User/follow',formdata);
   }
 
   getrequests(id:number){
-    return this.http.get('https://localhost:7200/api/User/Request?id='+id);
+    return this.http.get(this.baseUrl+'/User/Request?id='+id);
   }
 
   accept(formdata:any){
-    return this.http.put('https://localhost:7200/api/User/Accept',formdata);
+    return this.http.put(this.baseUrl+'/User/Accept',formdata);
   }
 
   unfollow(follower:number,following:number){
-    return this.http.delete('https://localhost:7200/api/User/unfollow?follower='+follower+'&following='+following);
+    return this.http.delete(this.baseUrl+'/User/unfollow?follower='+follower+'&following='+following);
   }
 
   getmessage(senderId:number,receiverId:number){
-    return this.http.get('https://localhost:7200/api/Chat/usermessage?senderId='+senderId+'&receiverId='+receiverId);
+    return this.http.get(this.baseUrl+'/Chat/usermessage?senderId='+senderId+'&receiverId='+receiverId);
   }
 
   getchatusers(senderId:number){
-    return this.http.get('https://localhost:7200/api/Chat/userchat?id='+senderId);
+    return this.http.get(this.baseUrl+'/Chat/userchat?id='+senderId);
   }
 
   postchat(formdata:any){
-    return this.http.post('https://localhost:7200/api/Chat',formdata);
+    return this.http.post(this.baseUrl+'/Chat',formdata);
   }
 
   deletemessage(id:number){
-    return this.http.delete('https://localhost:7200/api/Chat/delete?id='+id);
+    return this.http.delete(this.baseUrl+'/Chat/delete?id='+id);
   }
 
   homepagepost(id:number){
-    return this.http.get('https://localhost:7200/api/Post/HomePagePost?userId='+id);
+    return this.http.get(this.baseUrl+'/Post/HomePagePost?userId='+id);
   }
 
   searching(username:string){
-    return this.http.get('https://localhost:7200/api/User/Searching?userName='+username);
+    return this.http.get(this.baseUrl+'/User/Searching?userName='+username);
   }
 
   likepost(formdata:any){
-    return this.http.put('https://localhost:7200/api/Post/like',formdata);
+    return this.http.put(this.baseUrl+'/Post/like',formdata);
   }
 
   editprofile(formdata:any){
-    return this.http.put('https://localhost:7200/api/User/editprofile',formdata);
+    return this.http.put(this.baseUrl+'/User/editprofile',formdata);
   }
 
   postcomment(formdata:any){
-    return this.http.post('https://localhost:7200/api/Post/comment',formdata);
+    return this.http.post(this.baseUrl+'/Post/comment',formdata);
   }
 
   getcomment(id:any){
-    return this.http.get('https://localhost:7200/api/Post/GetComment?postId='+id)
+    return this.http.get(this.baseUrl+'/Post/GetComment?postId='+id)
   }
 }

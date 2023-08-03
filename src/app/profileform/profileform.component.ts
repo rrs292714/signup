@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ApiService } from '../services/api.service';
+import { AuthService } from '../services/auth.service';
 
 
 @Component({
@@ -12,9 +13,10 @@ import { ApiService } from '../services/api.service';
 })
 export class ProfileformComponent {
   datalist!:any;
-
-  constructor(private _formBuilder: FormBuilder,private http:HttpClient,private api:ApiService,private route:Router) {
-
+  loginedUser!:any;
+  constructor(private _formBuilder: FormBuilder,private http:HttpClient,private api:ApiService,private route:Router,private auth:AuthService) {
+    this.loginedUser=this.auth.getId();
+    this.fullname=this.auth.getfullName();
   }
 
   firstFormGroup = this._formBuilder.group({
@@ -36,11 +38,11 @@ export class ProfileformComponent {
   bio!:any;
   privacy!:any;
   imagedata!:any;
-
+  fullname!:any;
 
   profile_obj={
-    userId: 11,
-    fullName: "Keshav",
+    userId: this.loginedUser,
+    fullName: this.fullname,
     bio: '',
     profileImageUrl:'',
     privacy : ''
@@ -61,8 +63,9 @@ export class ProfileformComponent {
   }
 
   async submitForm() {
+    this.profile_obj.userId=this.loginedUser;
+    this.profile_obj.fullName=this.fullname;
     console.log(this.selectedFile);
-    
     this.bio = this.secondFormGroup.value.bio;
     this.privacy=this.thirdFormGroup.value.privacy;
     

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ApiService } from '../services/api.service';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-chat',
@@ -12,12 +13,13 @@ chatusers!:any;
 userdata:any[]=[];
 user1:any[]=[]
 userName!:any;
-  constructor(private api:ApiService,private route:ActivatedRoute){
+userId!:any;
+  constructor(private api:ApiService,private route:ActivatedRoute,private auth:AuthService){
     this.userName=this.route.snapshot.paramMap.get("userName");   
   }
   async ngOnInit(){
-
-    var res=await this.api.getchatusers(11).toPromise()
+   this.userId= this.auth.getId();
+    var res=await this.api.getchatusers(this.userId).toPromise()
       console.log(res);
       this.chatusers=res;
       console.log(this.chatusers);

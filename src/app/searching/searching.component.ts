@@ -13,8 +13,6 @@ constructor(private api:ApiService){}
   ngOnInit(){
   
   }
-
-
 searching(event :any){
   console.log(event.target.value);
   this.api.searching(event.target.value).subscribe(x=>{

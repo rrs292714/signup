@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ApiService } from '../services/api.service';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-profile',
@@ -10,14 +11,15 @@ import { ApiService } from '../services/api.service';
 })
 export class ProfileComponent implements OnInit{
   editform!:FormGroup;
-  loginedUser:number=11;
+  loginedUser!:number;
   profiledata:any;
   selectedFile: any;
   selectedFileUrl:any;
   imagedata!:any;
 
-   constructor(private api:ApiService,private fb:FormBuilder,private http:HttpClient){
-    this.api.getpost(11).subscribe(x=>{
+   constructor(private api:ApiService,private fb:FormBuilder,private http:HttpClient,private auth:AuthService){
+    this.loginedUser=this.auth.getId();
+    this.api.getpost(this.loginedUser).subscribe(x=>{
       this.profiledata=this.api.dataparser(x)
     })
     this.editform=this.fb.group({
@@ -30,7 +32,7 @@ export class ProfileComponent implements OnInit{
   }
 
    async ngOnInit(){
-    var res=await this.api.getpost(11).toPromise();
+    var res=await this.api.getpost(this.loginedUser).toPromise();
       this.profiledata=this.api.dataparser(res)
 
     }
@@ -83,7 +85,7 @@ export class ProfileComponent implements OnInit{
     try {
       const res = await  this.api.editprofile(this.editform.value).toPromise();
       console.log(res);
-      this.api.getpost(11).subscribe(x=>{
+      this.api.getpost(this.loginedUser).subscribe(x=>{
         this.profiledata=this.api.dataparser(x)
       })
     } catch (error) {

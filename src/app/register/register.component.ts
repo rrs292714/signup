@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 
 @Component({
@@ -9,7 +10,7 @@ import { AuthService } from '../services/auth.service';
 })
 export class RegisterComponent implements OnInit{
 RegisterForm!: FormGroup;
-constructor(private fb:FormBuilder,private auth:AuthService){}
+constructor(private fb:FormBuilder,private auth:AuthService,private route:Router){}
 
 ngOnInit(){
   this.RegisterForm = this.fb.group({
@@ -25,7 +26,7 @@ OnRegister(){
       this.auth.signup(this.RegisterForm.value)
       .subscribe({
         next:(res)=>{
-          alert('registered')
+          this.route.navigateByUrl('/profileform');
         },
         error:(err=>{
           alert(err.error.message)
@@ -49,4 +50,5 @@ get username(){
  get password(){
   return this.RegisterForm.get('password');
 }
+
 }
