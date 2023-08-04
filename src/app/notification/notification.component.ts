@@ -32,6 +32,7 @@ export class NotificationComponent implements OnInit {
 
  accept(id:number){
     this.req_object.followingId=id;
+    this.req_object.followerId=this.loginedUser;
     console.log(id);
     console.log(this.loginedUser)
     this.api.accept(this.req_object).subscribe(x=>{

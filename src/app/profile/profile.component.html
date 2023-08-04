@@ -1,5 +1,4 @@
-
-      <ng-container *ngFor="let x of profiledata">
+<ng-container *ngFor="let x of profiledata">
       <div class="my-2 d-flex justify-content-center shadow rounded-pill">
         <h3 class="m-2 fs-4">{{x.userName}}</h3>
       </div>
@@ -14,15 +13,13 @@
         <button class="btn btn-secondary w-100" (click)="editprofile()" data-bs-toggle="modal" data-bs-target="#exampleModal">Edit Profile</button>
         <div class="border border-bottom my-3 "></div>
 
-        <div class="row">  
-    
+        <div class="row">
           <ng-container *ngFor="let y of x.post">
             <div class="col col-lg-4 my-3  "style="width: 300px; height: 300px;" >
-              <img class="border border-dark rounded my-3" src="{{y.postMedia[0].MediaUrl}}" alt="hello" style="width: 300px; height: 300px;" data-bs-toggle="modal" data-bs-target="#postmodal">
-
+              <img class="border border-dark rounded my-3"  src="{{y.postMedia[0].MediaUrl}}" alt="hello" style="width: 300px; height: 300px;" data-bs-toggle="modal" data-bs-target="#postmodal">
             </div><br>
+
           </ng-container>
-        
         </div>
 
 
@@ -71,59 +68,10 @@
           </ul>
         </div>
       </div>
-      
     </div>
   </div>
 </div>
 
-
-
-
-
-<!-- Post Modal -->
-<!-- <div class="modal fade" id="postmodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="d-block my-3 modal-dialog modal-dialog-centered modal-dialog-scrollable">
-        <div class="card my-3 p-4" style="width: 18rem;">
-          <div>
-            <p>{{x.userName}}</p>
-          </div>
-          <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="false">
-            <div class="carousel-indicators">
-              <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-              <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
-              <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
-            </div>
-            <div class="carousel-inner">
-              <div class="carousel-item active">
-                <img src="" class="d-block w-100" alt="image">
-                <div class="carousel-caption d-none d-md-block">
-                </div>
-             
-              </div>
-            </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
-              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-              <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
-              <span class="carousel-control-next-icon" aria-hidden="true"></span>
-              <span class="visually-hidden">Next</span>
-            </button>
-          </div>
-          <div class="card-body">
-            <p class="card-text">{{x.userName}} </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div> -->
 </ng-container>
 
 

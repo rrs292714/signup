@@ -26,7 +26,7 @@ export class PostpageComponent {
   req_object={
     followerId: this.loginUserId,
     followingId: 0,
-    connectionStatus: "string"
+    connectionStatus:""
   }
 
   like_object={
@@ -80,11 +80,12 @@ export class PostpageComponent {
   }
 
   request(id:number){
-    
     this.req_object.followerId=this.loginUserId;
     this.req_object.followingId=id;
     this.api.followrequest(this.req_object).subscribe(x=>{
-     console.log(x);
+     this.api.usersuggestion(this.loginUserId).subscribe(x=>{
+      console.log(x);
+     })
     })
   }
 
@@ -106,7 +107,7 @@ export class PostpageComponent {
   SubmitComment(postId:number){
     this.comment_object.userId=this.loginUserId;
     this.comment_object.postId=postId;
-    this.comment_object.commentText=this.commentText
+    this.comment_object.commentText=this.commentText;
     this.api.postcomment(this.comment_object).subscribe(x=>{
       this.api.homepagepost(this.loginUserId).subscribe(x=>{
         this.postdata=this.api.dataparser(x);
@@ -115,7 +116,7 @@ export class PostpageComponent {
         this.commentsdata=x;
       })
     })
-    this.commentText=''
+    this.commentText='';
   }
 
 
@@ -137,7 +138,7 @@ export class PostpageComponent {
         this.subcommentdata=x;
       })
     })
-    this.SubcommentText=''
+    this.SubcommentText='';
   }
 
   

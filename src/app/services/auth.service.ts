@@ -20,6 +20,10 @@ export class AuthService {
     return this.http.post(environment.apiUrl+'/Auth/login',formdata)
   }
 
+  forgotpassword(formdata:any){
+    return this.http.put(environment.apiUrl+'/Auth/forgotpassword',formdata)   
+  }
+
   savetoken(tkn:any){
     console.log(tkn.token.value)
     console.log(tkn.userid)
@@ -56,5 +60,14 @@ export class AuthService {
 
   logout(){
     localStorage.clear();
+  }
+
+  loginguard(){
+    if(localStorage.getItem('token')!=null){
+      return true
+    } 
+    else{
+    return false
+    }
   }
 }

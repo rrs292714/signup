@@ -6,7 +6,7 @@
 </div>
 <div class=" container w-75 border bordergradient shadow  rounded my-5 p-3">
     <h1 class="font1  text-center" >Sign Up</h1>
-<form [formGroup]="RegisterForm" (ngSubmit)="OnRegister()">
+<form [formGroup]="RegisterForm" (ngSubmit)="otpgen()">
   <div class="mb-3">
     <label for="exampleInputEmail1" class="form-label">Email :</label>
     <input type="email" class="form-control" name="email" id="exampleInputEmail1" aria-describedby="emailHelp" formControlName="Email">
@@ -28,9 +28,40 @@
       <label for="exampleInputPassword1" class="form-label">Password :</label>
       <input type="password" class="form-control" name="name" id="exampleInputPassword1" formControlName="Password">
     </div>
-    <button type="submit" class="btn bodycolor px-4 w-100 " [disabled]="RegisterForm.invalid"> <span class="text-white fs-5">Submit</span></button>
+    <button type="submit" class="btn bodycolor px-4 w-100 " data-bs-toggle="modal" data-bs-target="#otpmodal" [disabled]="RegisterForm.invalid"> <span class="text-white fs-5">Submit</span></button>
 </form>
 <div class="pt-2 text-center text-decoration-none">
 <span >Already have an account?<a routerLink='/login' routerLinkActive="router-link-active " class="text-decoration-none"> Login</a></span>
 </div>
+</div>
+
+
+<div class="modal fade" id="otpmodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">OTP CONFIRMATION</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+          <form  [formGroup]="otpform">
+              <div class="form-group">
+                <label for="otp">OTP</label>
+                <input
+                  type="text"
+                  name="otp"
+                  id="otp"
+                  class="form-control"
+                  formControlName="otp"
+                />
+              </div>
+             <div class="py-2 mx-2">
+              <button type="button" class="btn btn-secondary mx-2" data-bs-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-primary mx-2" data-bs-dismiss="modal" (click)="checkotp()"  data-bs-toggle="modal" data-bs-target="#otpmodal">Verify</button>
+            </div>
+            </form>
+      </div>
+      
+    </div>
+  </div>
 </div>

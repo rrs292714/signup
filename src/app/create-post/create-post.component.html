@@ -1,5 +1,4 @@
 <div class="fs-2 text-muted m-2 text-center">New Post</div>
-
 <mat-horizontal-stepper  style="height: 100%;">
     <!-- Step 1: Profile Image Upload -->
 
@@ -18,15 +17,22 @@
             <!-- Dynamically generate carousel items -->
             <div *ngFor="let item of selectedFileUrl; let i = index" [ngClass]="{ 'carousel-item': true, 'active': i === 0 }">
               
-              <img [src]="item" class="border border-1 border-dark rounded " style="width: 450px;height: 600px;object-fit: cover;" alt="Slide {{ i }}">
-              <button type="submit" class="btn position-absolute top-0 end-20" (click)="removeItem(i)" >
+              <ng-container *ngIf="item.includes('.mp4'); else elsepart">
+                <video [src]="item" class="border border-1 border-dark rounded" style="width: 450px; height: 600px; object-fit: cover;" controls>
+                </video>
+              </ng-container>
+              <ng-template #elsepart>
+                <img [src]="item" class="border border-1 border-dark rounded" style="width: 450px; height: 600px; object-fit: cover;" alt="Slide {{ i }}">
+              </ng-template>
+              <button type="submit" class="btn position-absolute top-0 end-20" (click)="removeItem(i)">
                 <div class="example-button-container">
                   <button mat-fab color="primary" aria-label="Example icon button with a delete icon">
                     <mat-icon>delete</mat-icon>
                   </button>
                 </div>
-            </button>
-          </div>
+              </button>
+            </div>
+            
           <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
             <span class="carousel-control-prev-icon bg-dark" aria-hidden="true"></span>
             <span class="visually-hidden ">Previous</span>

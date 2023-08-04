@@ -52,8 +52,9 @@
 
                           <ng-container *ngFor="let item of commentsdata">
                             <div class="container border border rounded m-2" *ngIf="showcomment==true && x.postId==item.postId" >
+                         <div class="border m-2"> 
                           <img class="border border-dark rounded-circle m-2" [src]="item.profileImageUrl" alt="" style="width: 40px ;height: 40px;">
-                          <span class="m-2">{{item.commentText}}</span>
+                          <span class="m-2">{{item.commentText}}</span></div>
                           <div class="container text-end">
                             <span class="btn border-light " (click)="Subcomment(item.commentId)">Reply</span>
                           </div>
@@ -61,12 +62,20 @@
                             <input type="text" class="form-control" placeholder="write your comment....." [(ngModel)]="SubcommentText" aria-label="Username" aria-describedby="basic-addon1">
                             <button class="btn btn-primary" (click)="SubmitsubComment(item.commentId)" [disabled]="SubcommentText.length == 0">Comment</button>   
                           </div>
+                          <ng-container *ngFor="let a of subcommentdata">
+                            <div class="border m-2 container">
+                          <img class="border border-dark rounded-circle m-2" [src]="a.profileImageUrl" alt="" style="width: 40px ;height: 40px;">
+                          <span class="m-2">{{a.subCommentText}}</span>
+                           </div>
+                          </ng-container>
+                            </div>
+                          </ng-container>
                         </div>
-                       </ng-container>
+                      
                       </div>
                 </div>     
         </div>
-    </div>
+
 
 <!-- suggestion list -->
     <div class="col lg-3 my-3">

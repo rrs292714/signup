@@ -28,6 +28,8 @@ import { MessagesComponent } from './messages/messages.component';
 import { SearchingComponent } from './searching/searching.component';
 import { MatIconModule } from '@angular/material/icon';
 import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.component';
+import { CommonModule } from '@angular/common';
+import { ViewpostpageComponent } from './viewpostpage/viewpostpage.component';
 
 
 @NgModule({
@@ -49,7 +51,8 @@ import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.compone
     ChatComponent,
     MessagesComponent,
     SearchingComponent,
-    ForgotpasswordComponent
+    ForgotpasswordComponent,
+    ViewpostpageComponent
   ],
   imports: [
     BrowserModule,
@@ -63,7 +66,8 @@ import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.compone
     MatRadioModule,
     BrowserAnimationsModule,
     FormsModule,
-    MatIconModule
+    MatIconModule,
+    CommonModule
   ],
   providers: [],
   bootstrap: [AppComponent]

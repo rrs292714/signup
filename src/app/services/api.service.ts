@@ -122,4 +122,6 @@ export class ApiService {
   getotp(email:string){
     return this.http.get(this.baseUrl+'/Auth/Otp/'+email)
   }
+
+  
 }

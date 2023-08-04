@@ -28,6 +28,7 @@ Onlogin(){
         this.route.navigate(['/home'])
       }),
       error:(err=>{
+        alert("please check your userName and password!")
         // alert("ERROR")
       })
     })

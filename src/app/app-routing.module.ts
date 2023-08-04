@@ -14,6 +14,7 @@ import { SearchingComponent } from './searching/searching.component';
 import { StartpageComponent } from './startpage/startpage.component';
 import { ViewprofileComponent } from './viewprofile/viewprofile.component';
 import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.component';
+import { Userauthguard } from './loginguard.guard';
 
 const routes: Routes = [
   {path:'',component:StartpageComponent,
@@ -24,7 +25,7 @@ const routes: Routes = [
   ]},
   {path:'forgotpassword',component:ForgotpasswordComponent},
   {path:'profileform', component:ProfileformComponent},
-  {path:'home',component:HomepageComponent,
+  {path:'home',component:HomepageComponent,canActivate:[Userauthguard],
   children:[
   {path:'',component:PostpageComponent},
   {path:'profile',component:ProfileComponent},

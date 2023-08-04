@@ -14,8 +14,8 @@ export class CreatePostComponent {
 
   firstFormGroup!: FormGroup;
   secondFormGroup!: FormGroup;
-  selectedFile: any[] = [];
-  selectedFileUrl: any[] = [];
+  selectedFile: File[] = [];
+  selectedFileUrl: string[] = [];
   imagedata:any[]=[];
   caption!:string;
   userId!:any;
@@ -47,32 +47,31 @@ export class CreatePostComponent {
     this.imageArray.removeAt(index);
     this.selectedFile.splice(index,1);
     this.selectedFileUrl.splice(index, 1);
-  
-    // Clear the selectedFileUrl array
+
     this.selectedFileUrl = [];
-  
-    // Preview the remaining images
+
     for (let i = 0; i < this.selectedFile.length; i++) {
     const file: File = this.selectedFile[i];
     this.previewImage(file);
     }
   }
-  
   onFileSelected(event: any) {
     const files: FileList = event.target.files;
     for (let i = 0; i < files.length; i++) {
       const file: File = files[i];
       this.selectedFile.push(file);
+      console.log(this.selectedFile);
+      
       this.previewImage(file);
     }
   }
-  
+
   previewImage(file: File) {
     const reader = new FileReader();
     reader.readAsDataURL(file);
     reader.onload = () => {
-      this.selectedFileUrl.push(reader.result);
-    }
+      this.selectedFileUrl.push(reader.result as string);
+    };
   }
 
   async submitForm() {

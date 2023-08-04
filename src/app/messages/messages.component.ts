@@ -13,7 +13,7 @@ export class MessagesComponent implements OnInit {
   userdata!:any;
   loginedUser!:any;
   allmessages!:any;
-  message!:any;
+  message:any='';
   deleteid!:number;
 
   constructor(private api:ApiService,private route:ActivatedRoute,private auth:AuthService){
