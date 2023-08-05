@@ -123,5 +123,16 @@ export class ApiService {
     return this.http.get(this.baseUrl+'/Auth/Otp/'+email)
   }
 
-  
+  getPostByPostId(postId:number){
+    return this.http.get(this.baseUrl+'/Post/PostById?posId='+postId)
+  }
+
+  deletePost(postId:number){
+    return this.http.delete(this.baseUrl+'/Post/DeletePost?postId='+postId)
+  }
+
+
+  followingOrnot(followerId:number,followingId:number){
+    return this.http.get(this.baseUrl+`User/IsFollowing?followerId=${followerId}&followingId=${followingId}}`)
+  }
 }

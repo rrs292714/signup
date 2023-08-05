@@ -93,4 +93,19 @@ export class ProfileComponent implements OnInit{
       // Handle the error if needed
     }
   }
+   deletepost(postId:number){
+    this.api.deletePost(postId)
+    .subscribe({
+      next:(res=>{
+        this.api.getpost(this.loginedUser).subscribe(x=>{
+          this.profiledata=this.api.dataparser(x)
+        })
+      }),
+      error:(err=>{
+        this.api.getpost(this.loginedUser).subscribe(x=>{
+          this.profiledata=this.api.dataparser(x)
+        })
+      })
+    })
+  }
 }

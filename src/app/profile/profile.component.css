@@ -1,3 +1,14 @@
 .imgwid{
     width:0px;
   }
+  div.relative {
+    position: relative;
+    
+  } 
+  
+  div.absolute {
+    position: absolute;
+    top: 20px;
+    right: 0;
+    
+  }

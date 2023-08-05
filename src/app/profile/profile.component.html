@@ -1,3 +1,4 @@
+{{profiledata|json}}
 <ng-container *ngFor="let x of profiledata">
       <div class="my-2 d-flex justify-content-center shadow rounded-pill">
         <h3 class="m-2 fs-4">{{x.userName}}</h3>
@@ -15,9 +16,16 @@
 
         <div class="row">
           <ng-container *ngFor="let y of x.post">
-            <div class="col col-lg-4 my-3  "style="width: 300px; height: 300px;" >
-              <img class="border border-dark rounded my-3"  src="{{y.postMedia[0].MediaUrl}}" alt="hello" style="width: 300px; height: 300px;" data-bs-toggle="modal" data-bs-target="#postmodal">
-            </div><br>
+            
+            <div class="col col-lg-4 my-3 relative "style="width: 300px; height: 300px;"  >
+              <img class="border border-dark rounded my-3" [routerLink]="['/viewpost',(y.postId)]" routerLinkActive="router-link-active"   src="{{y.postMedia[0].MediaUrl}}" alt="hello" style="width: 300px; height: 300px;" data-bs-toggle="modal" data-bs-target="#postmodal">
+              <div class="example-button-container absolute" (click)="deletepost(y.postId)">
+                <button mat-fab color="primary" aria-label="Example icon button with a delete icon">
+                  <mat-icon>delete</mat-icon>
+                </button>
+              </div>
+            </div>
+            <br>
 
           </ng-container>
         </div>

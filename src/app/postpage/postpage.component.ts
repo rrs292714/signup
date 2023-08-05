@@ -58,6 +58,7 @@ export class PostpageComponent {
     })
     
   }
+
   async ngOnInit(){
     this.loginUserId=this.auth.getId();
     try{
@@ -98,7 +99,6 @@ export class PostpageComponent {
 
 
   comment(postId:number){
-
     this.commentbox=true;
     this.commentboxId=postId;
   }

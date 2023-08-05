@@ -15,6 +15,7 @@ import { StartpageComponent } from './startpage/startpage.component';
 import { ViewprofileComponent } from './viewprofile/viewprofile.component';
 import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.component';
 import { Userauthguard } from './loginguard.guard';
+import { ViewpostpageComponent } from './viewpostpage/viewpostpage.component';
 
 const routes: Routes = [
   {path:'',component:StartpageComponent,
@@ -38,7 +39,8 @@ children:[
   {path:':id',component:MessagesComponent}
 ]}
 ]},
-{path:'viewprofile/:id',component:ViewprofileComponent}
+{path:'viewprofile/:id',component:ViewprofileComponent},
+{path:'viewpost/:id',component:ViewpostpageComponent}
 ];
 
 @NgModule({
