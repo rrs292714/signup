@@ -19,6 +19,7 @@ export class PostpageComponent {
   commentboxId!:number
   commentsdata!:any
   showcomment:boolean=false;
+  subcommentshow:boolean=false;
   subcommentbox:boolean=false;
   subcommentboxId!:any;
   SubcommentText:string='';
@@ -83,10 +84,17 @@ export class PostpageComponent {
   request(id:number){
     this.req_object.followerId=this.loginUserId;
     this.req_object.followingId=id;
-    this.api.followrequest(this.req_object).subscribe(x=>{
-     this.api.usersuggestion(this.loginUserId).subscribe(x=>{
-      console.log(x);
-     })
+    this.api.followrequest(this.req_object).subscribe({
+      next:(res=>{
+        this.api.usersuggestion(this.loginUserId).subscribe(x=>{
+          console.log(x);
+         })
+      }),
+      error:(err=>{
+        this.api.usersuggestion(this.loginUserId).subscribe(x=>{
+          console.log(x);
+         })
+      })
     })
   }
 
@@ -134,11 +142,17 @@ export class PostpageComponent {
       this.api.homepagepost(this.loginUserId).subscribe(x=>{
         this.postdata=this.api.dataparser(x);
       })
-      this.api.getSubcomment(commentId).subscribe(x=>{
-        this.subcommentdata=x;
-      })
+     
     })
     this.SubcommentText='';
+  }
+
+  ShowsubComment(commentId:any){
+    this.api.getSubcomment(commentId).subscribe(x=>{
+      this.subcommentdata=x;
+    })
+    this.subcommentshow=true;
+
   }
 
   

@@ -132,4 +132,7 @@ export class ViewpostpageComponent implements OnInit{
     })
     this.SubcommentText='';
   }
+  endsWith(str: string, suffix: string): boolean {
+    return str.endsWith(suffix);
+  }
 }

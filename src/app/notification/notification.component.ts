@@ -12,6 +12,7 @@ import { AuthService } from '../services/auth.service';
 export class NotificationComponent implements OnInit {
   requests!:any;
   loginedUser!:any;
+  notificationdata!:any;
   constructor(private api:ApiService,private route:ActivatedRoute,private auth:AuthService){}
   req_object={
     followerId: this.loginedUser,
@@ -23,9 +24,12 @@ export class NotificationComponent implements OnInit {
     followingId: 0
   }
   ngOnInit() {
-    this.loginedUser=this.auth.getId();
+   this.loginedUser=this.auth.getId();
    this.api.getrequests(this.loginedUser).subscribe(x=>{
     this.requests=x;
+   })
+   this.api.getNotications(this.loginedUser).subscribe(x=>{
+    this.notificationdata=x;
    })
   }
 

@@ -11,7 +11,7 @@ import { AuthService } from '../services/auth.service';
 export class ChatComponent implements OnInit {
 chatusers!:any;
 userdata:any[]=[];
-user1:any[]=[]
+user1:any[]=[];
 userName!:any;
 userId!:any;
   constructor(private api:ApiService,private route:ActivatedRoute,private auth:AuthService){

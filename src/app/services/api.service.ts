@@ -133,6 +133,10 @@ export class ApiService {
 
 
   followingOrnot(followerId:number,followingId:number){
-    return this.http.get(this.baseUrl+`User/IsFollowing?followerId=${followerId}&followingId=${followingId}}`)
+    return this.http.get(this.baseUrl+`/User/IsFollowing?followerId=${followerId}&followingId=${followingId}`)
+  }
+
+  getNotications(id:number){
+    return this.http.get(this.baseUrl+`/Post/GetNotification?userId=${id}`)
   }
 }

@@ -7,17 +7,16 @@
         <form calss="" [formGroup]="firstFormGroup">
       <ng-template matStepLabel>Select Image</ng-template>
       <div class="text-center" formArrayName="image">
-        <div *ngIf="selectedFile!=null">
-          <!-- <ng-container *ngFor="let item of selectedFileUrl">
-          <img class="border border-2 border-dark" style="width: 450px;height: 600px;object-fit: cover;" [src]="item" alt="Selected Image" />
-          </ng-container>--> 
-        </div> 
+        <!-- <div *ngIf="selectedFileVideo!=null" >
+          <ng-container *ngFor="let a of selectedFileVideo">
+            <video [src]="a" style="width: 450px;height: 600px;object-fit: cover;" alt="hello"></video>
+          </ng-container> 
+        </div>  -->
         <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
           <div class="carousel-inner">
             <!-- Dynamically generate carousel items -->
             <div *ngFor="let item of selectedFileUrl; let i = index" [ngClass]="{ 'carousel-item': true, 'active': i === 0 }">
-              
-              <ng-container *ngIf="item.includes('.mp4'); else elsepart">
+              <ng-container *ngIf="endsWith(item,'.mp4'); else elsepart">
                 <video [src]="item" class="border border-1 border-dark rounded" style="width: 450px; height: 600px; object-fit: cover;" controls>
                 </video>
               </ng-container>
@@ -26,7 +25,7 @@
               </ng-template>
               <button type="submit" class="btn position-absolute top-0 end-20" (click)="removeItem(i)">
                 <div class="example-button-container">
-                  <button mat-fab color="primary" aria-label="Example icon button with a delete icon">
+                  <button mat-fab color="light" aria-label="Example icon button with a delete icon">
                     <mat-icon>delete</mat-icon>
                   </button>
                 </div>

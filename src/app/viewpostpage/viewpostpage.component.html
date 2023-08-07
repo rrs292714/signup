@@ -1,8 +1,7 @@
-{{postdata|json}}
+<!-- {{postdata|json}} -->
 <div class="container-fluid">
     <div class="container" >    
         <div class="card mx-auto my-3" style="width:50vw;">
-
                 <div class="d-flex m-2 border-bottom border-secondary">
                    <span class="fs-5" [routerLink]="['/viewprofile',(postdata.userId)]" routerLinkActive="router-link-active" >
                     <img src="{{postdata.profileImageUrl}}" class="rounded-circle border border-dark" style="width: 60px ;height: 60px;" alt="profile img">
@@ -14,15 +13,17 @@
                   <div class="carousel-inner">
                     <ng-container *ngFor="let y of postdata.media; let i = index">
                       <div class="carousel-item" [class.active]="i === 0">
-                        <img src="{{y.mediaUrl}}" class="d-block w-100" alt="postImage">
+                        <img *ngIf="endsWith(y.mediaUrl, '.png')" [src]="y.mediaUrl" class="d-block w-100" alt="postImage">
+                        <img *ngIf="endsWith(y.mediaUrl, '.jpg')" [src]="y.mediaUrl" class="d-block w-100" alt="postImage">
+                        <video *ngIf="endsWith(y.mediaUrl, '.mp4')" [src]="y.mediaUrl" alt="video" controls></video>
                       </div>
                     </ng-container>
                   </div>
-                  <button class="carousel-control-prev" type="button" [attr.data-bs-target]="'#'+postdata.postId" data-bs-slide="prev">
+                  <button class="carousel-control-prev" type="button" [ngClass]="{'d-none':postdata.media.length==1 }" [attr.data-bs-target]="'#'+postdata.postId" data-bs-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                     <span class="visually-hidden">Previous</span>
                   </button>
-                  <button class="carousel-control-next" type="button" [attr.data-bs-target]="'#'+postdata.postId" data-bs-slide="next">
+                  <button class="carousel-control-next" type="button" [ngClass]="{'d-none':postdata.media.length==1 }" [attr.data-bs-target]="'#'+postdata.postId" data-bs-slide="next">
                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                     <span class="visually-hidden">Next</span>
                   </button>
@@ -33,7 +34,7 @@
                       <!-- Check if likedUsers is null -->
                       <ng-container *ngIf="postdata.likedOrNot==2;else elseblock">
                           <img class="m-2" src="https://cdn-icons-png.flaticon.com/512/1077/1077035.png" (click)="like(postdata.postId)" style="width: 30px;height: 30px;" alt="">
-                    </ng-container>
+                      </ng-container>
                     <ng-template #elseblock>
                         <img class="m-2" src="https://cdn-icons-png.flaticon.com/512/833/833472.png" (click)="like(postdata.postId)" style="width: 30px;height: 30px;" alt="">
                       </ng-template>
@@ -53,7 +54,10 @@
                       <div class="container border border rounded m-2" *ngIf="showcomment==true && postdata.postId==item.postId" >
                    <div class="border m-2"> 
                     <img class="border border-dark rounded-circle m-2" [src]="item.profileImageUrl" alt="" style="width: 40px ;height: 40px;">
-                    <span class="m-2">{{item.commentText}}</span></div>
+                    <span class="m-2">{{item.userName}}</span>
+                  
+                    <span class="m-2">{{item.commentText}}</span>
+                  </div>
                     <div class="container text-end">
                       <span class="btn border-light " (click)="Subcomment(item.commentId)">Reply</span>
                     </div>
@@ -64,6 +68,7 @@
                     <ng-container *ngFor="let a of subcommentdata">
                       <div class="border m-2 container">
                     <img class="border border-dark rounded-circle m-2" [src]="a.profileImageUrl" alt="" style="width: 40px ;height: 40px;">
+                    <span class="m-2">{{a.userName}}</span>
                     <span class="m-2">{{a.subCommentText}}</span>
                      </div>
                     </ng-container>

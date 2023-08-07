@@ -1,4 +1,4 @@
-<p>{{postdata|json}}</p>
+<!-- <p>{{postdata|json}}</p> -->
 
 <div class="row">
     <div class="col-lg-9 my-2">
@@ -19,11 +19,11 @@
                           </div>
                         </ng-container>
                       </div>
-                      <button class="carousel-control-prev" type="button" [attr.data-bs-target]="'#'+x.postId" data-bs-slide="prev">
+                      <button class="carousel-control-prev" type="button" [ngClass]="{'d-none':x.media.length==1 }" [attr.data-bs-target]="'#'+x.postId" data-bs-slide="prev">
                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                         <span class="visually-hidden">Previous</span>
                       </button>
-                      <button class="carousel-control-next" type="button" [attr.data-bs-target]="'#'+x.postId" data-bs-slide="next">
+                      <button class="carousel-control-next" type="button" [ngClass]="{'d-none':x.media.length==1 }" [attr.data-bs-target]="'#'+x.postId" data-bs-slide="next">
                         <span class="carousel-control-next-icon" aria-hidden="true"></span>
                         <span class="visually-hidden">Next</span>
                       </button>
@@ -52,22 +52,34 @@
 
                           <ng-container *ngFor="let item of commentsdata">
                             <div class="container border border rounded m-2" *ngIf="showcomment==true && x.postId==item.postId" >
-                         <div class="border m-2"> 
+                         <div class="border m-2 rounded" [routerLink]="['/viewprofile',(item.userId)]" routerLinkActive="router-link-active" > 
                           <img class="border border-dark rounded-circle m-2" [src]="item.profileImageUrl" alt="" style="width: 40px ;height: 40px;">
-                          <span class="m-2">{{item.commentText}}</span></div>
+                          <span class="m-2">{{item.userName}}</span>
+                          <span class="m-2">{{item.commentText}}</span>
+                        </div>
                           <div class="container text-end">
+
+                            <span class="btn border-light " (click)="ShowsubComment(item.commentId)">Replies</span>
+                         <span class="m-2">{{ subcommentdata.length }}</span>
+
                             <span class="btn border-light " (click)="Subcomment(item.commentId)">Reply</span>
                           </div>
                           <div class="input-group my-3 " *ngIf="subcommentbox==true && subcommentboxId==item.commentId">
                             <input type="text" class="form-control" placeholder="write your comment....." [(ngModel)]="SubcommentText" aria-label="Username" aria-describedby="basic-addon1">
                             <button class="btn btn-primary" (click)="SubmitsubComment(item.commentId)" [disabled]="SubcommentText.length == 0">Comment</button>   
+                            
                           </div>
-                          <ng-container *ngFor="let a of subcommentdata">
-                            <div class="border m-2 container">
+                          <div *ngIf="subcommentshow==true ">
+
+                          <ng-container *ngFor="let a of subcommentdata" >
+                            <div class="border m-2 container rounded-pill" [routerLink]="['/viewprofile',(item.userId)]" routerLinkActive="router-link-active">
                           <img class="border border-dark rounded-circle m-2" [src]="a.profileImageUrl" alt="" style="width: 40px ;height: 40px;">
+                          <span class="m-2">{{a.userName}}</span> 
                           <span class="m-2">{{a.subCommentText}}</span>
+
                            </div>
                           </ng-container>
+                        </div>
                             </div>
                           </ng-container>
                         </div>

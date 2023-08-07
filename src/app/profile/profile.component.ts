@@ -50,7 +50,11 @@ export class ProfileComponent implements OnInit{
       };
     }
 
-  
+    endsWith(str: string, suffix: string): boolean {
+      return str.endsWith(suffix);
+    }
+
+    
  async editprofile(){
     var data=this.profiledata;
     console.log((data[0].profileImageUrl));

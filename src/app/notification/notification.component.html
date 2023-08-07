@@ -1,15 +1,29 @@
 <!-- <p>{{requests|json}}</p> -->
-
-<div class="container my-2">
+<!-- {{notificationdata|json}} -->
+<div class="container my-2" *ngIf="requests!=null">
 <h1 class="fs-2 text-center shadow p-3">Follow Requests</h1>
 
 <ng-container *ngFor="let x of requests">
-    <div class="text-center fs-4">
+    <div class="text-center fs-4" >
       <span [routerLink]="['/viewprofile',(x.followerId)]"  > 
-        <img class="border border-dark rounded-circle mx-2 " src="{{x.profileImageUrl}}" alt="" style="width: 70px;height: 70px;"> 
+        <img class="border border-dark rounded-circle mx-2 " src="{{x.profileImageUrl}}" alt="profileImage" style="width: 70px;height: 70px;"> 
         {{x.userName}}  </span>
       <button class="btn btn-primary shadow mx-2" (click)="accept(x.followerId)">Accept</button>  
       <button class="btn btn-danger shadow mx-2" (click)="decline(x.followerId)">Decline</button>
     </div>
+</ng-container>
+</div>
+<div class="container my-2 shadow p-3 ">
+  <h1 class="fs-2 text-center  p-3">Likes and Comment Notifications</h1>
+<ng-container *ngFor="let a of notificationdata">
+  <div class="shadow rounded-pill p-2 m-2" [routerLink]="['/viewpost',(a.postId)]" routerLinkActive="router-link-active" >
+    <img [src]="a.profileImageUrl" class="border border-dark rounded-circle" style="width: 50px;height: 50px;" alt="profileImage">
+    <span class="fs-5" [routerLink]="['/viewprofile',(a.userId)]" routerLinkActive="router-link-active" > {{a.userName}}</span>
+    <span *ngIf="a.notificationType=='Like'" class="fs-6"> Liked your post..</span>
+    <p class="text-end" *ngIf="a.notificationType=='Like'"> {{a.notificationTime|date:'short'}}</p>
+
+    <span *ngIf="a.notificationType=='Comments'"> Commented on your Post</span>
+    <p class="text-end" *ngIf="a.notificationType=='Comments'"> {{a.notificationTime|date:'short'}}</p>
+  </div>
 </ng-container>
 </div>

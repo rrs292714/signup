@@ -22,9 +22,70 @@ export class ViewprofileComponent implements OnInit {
       this.profiledata=this.api.dataparser(x)
       this.api.followingOrnot(this.loginedUser,this.id).subscribe(x=>{
         this.followingdata=x;
+        console.log(this.followingdata);
+      })
+    }) 
+  }
+
+
+
+  async decline(id:number){
+    console.log(id);
+    this.api.unfollow(this.loginedUser,this.id).subscribe({
+      next:(res=>{
+        this.api.getpost(this.id).subscribe(x=>{
+          this.profiledata=this.api.dataparser(x)
+          this.api.followingOrnot(this.loginedUser,this.id).subscribe(x=>{
+            this.followingdata=x;
+            console.log(this.followingdata); 
+          })
+        })
+      }),
+      error:(err=>{
+        this.api.getpost(this.id).subscribe(x=>{
+          this.profiledata=this.api.dataparser(x)
+          this.api.followingOrnot(this.loginedUser,this.id).subscribe(x=>{
+            this.followingdata=x;
+            console.log(this.followingdata);
+ 
+          })
+        })
       })
     })
   }
+
+  req_object={
+    followerId: this.loginedUser,
+    followingId: 0,
+    connectionStatus:""
+  }
+
+   request(id:number){
+    this.req_object.followerId=this.loginedUser;
+    this.req_object.followingId=this.id;
+    this.api.followrequest(this.req_object).subscribe({
+      next:(res=>{
+        this.api.getpost(this.id).subscribe(x=>{
+          this.profiledata=this.api.dataparser(x)
+          this.api.followingOrnot(this.loginedUser,this.id).subscribe(x=>{
+            this.followingdata=x;
+            console.log(this.followingdata); 
+          })
+        })
+      }),
+      error:(err=>{
+        this.api.getpost(this.id).subscribe(x=>{
+          this.profiledata=this.api.dataparser(x)
+          this.api.followingOrnot(this.loginedUser,this.id).subscribe(x=>{
+            this.followingdata=x;
+            console.log(this.followingdata);
+ 
+          })
+        })
+      })
+    })
+  }
+
 
 
 

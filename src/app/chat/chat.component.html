@@ -2,7 +2,7 @@
     <h1 class="fs-2 text-center m-3 p-2 shadow rounded-pill">Messages</h1>
     <div class="row">
         <div class="col-4 border-end">
-        <div *ngFor="let x of chatusers " class=" rounded shadow rounded-pill m-2 p-2">
+        <div *ngFor="let x of chatusers " class=" rounded shadow rounded-pill m-2 p-2" >
            
            <div  [routerLink]="['/home/message',(x.userId)]" routerLinkActive="router-link-active">
            
