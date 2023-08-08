@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { interval } from 'rxjs';
 import { ApiService } from '../services/api.service';
 import { AuthService } from '../services/auth.service';
 
@@ -22,6 +23,8 @@ export class MessagesComponent implements OnInit {
     console.log(this.loginedUser);
   }
 
+
+
   ngOnInit() {
     this.loginedUser=this.auth.getIDD();
 
@@ -35,12 +38,27 @@ export class MessagesComponent implements OnInit {
         this.allmessages=x;
       })
     });
+
+    this.fetchMessages();
+
+    // Poll for new messages every 3 seconds
+    interval(3000).subscribe(() => {
+      this.fetchMessages();
+    });
+
+    
   }
 
   message_form={
     senderId: this.loginedUser,
     receiverId: this.id,
     message: this.message
+  }
+
+  private fetchMessages() {
+    this.api.getmessage(this.loginedUser, this.id).subscribe(x => {
+      this.allmessages = x;
+    });
   }
 
   sendMessage(){

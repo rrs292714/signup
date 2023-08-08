@@ -12,13 +12,13 @@
         <h2 >{{x.fullName}}</h2>
         <p>{{x.bio}}</p>
         <button class="btn btn-secondary w-100" (click)="editprofile()" data-bs-toggle="modal" data-bs-target="#exampleModal">Edit Profile</button>
-        <div class="border border-bottom my-3 "></div>
+        <div class="border border-bottom my-3"></div>
 
         <div class="row">
           <ng-container *ngFor="let y of x.post">
             
-            <div class="col col-lg-4 my-3 relative "style="width: 300px; height: 300px;"  >
-              <img class="border border-dark rounded my-3" [routerLink]="['/viewpost',(y.postId)]" routerLinkActive="router-link-active"   src="{{y.postMedia[0].MediaUrl}}" alt="hello" style="width: 300px; height: 300px;" data-bs-toggle="modal" data-bs-target="#postmodal">
+            <div class="col-lg-4  mx-3 relative mx-2 "style="width: 300px; height: 300px;"  >
+              <img class="border border-dark rounded my-3  " [routerLink]="['/viewpost',(y.postId)]" routerLinkActive="router-link-active"   src="{{y.postMedia[0].MediaUrl}}" alt="hello" style="width: 300px; height: 300px;" data-bs-toggle="modal" data-bs-target="#postmodal">
               <div class="example-button-container absolute" (click)="deletepost(y.postId)">
                 <button mat-fab color="warn" aria-label="Example icon button with a delete icon">
                   <mat-icon>delete</mat-icon>
