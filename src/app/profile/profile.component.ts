@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ApiService } from '../services/api.service';
 import { AuthService } from '../services/auth.service';
 
@@ -17,7 +18,7 @@ export class ProfileComponent implements OnInit{
   selectedFileUrl:any;
   imagedata!:any;
 
-   constructor(private api:ApiService,private fb:FormBuilder,private http:HttpClient,private auth:AuthService){
+   constructor(private api:ApiService,private fb:FormBuilder,private http:HttpClient,private auth:AuthService,private route:Router){
     this.loginedUser=this.auth.getId();
     this.api.getpost(this.loginedUser).subscribe(x=>{
       this.profiledata=this.api.dataparser(x)
@@ -54,7 +55,10 @@ export class ProfileComponent implements OnInit{
       return str.endsWith(suffix);
     }
 
-    
+    logout(){
+      this.auth.logout();
+      this.route.navigateByUrl('/');
+    }
  async editprofile(){
     var data=this.profiledata;
     console.log((data[0].profileImageUrl));

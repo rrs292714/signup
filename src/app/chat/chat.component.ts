@@ -24,4 +24,6 @@ userId!:any;
       this.chatusers=res;
       console.log(this.chatusers);
   };
+
+  
 }

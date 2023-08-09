@@ -1,10 +1,10 @@
 <!-- <p>{{postdata|json}}</p> -->
 
 <div class="row">
-    <div class="col-lg-9 my-2">
+    <div class="col-lg-9 col-md-12 col-sm-12 my-2">
         <div class="container" *ngFor="let x of postdata">
             <div class="card mx-auto my-3" style="width:50vw;">
-                    <div class="d-flex m-2 border-bottom border-secondary">
+                    <div class="d-flex m-2 border-bottom border-secondary" style="cursor: pointer;">
                        <span class="fs-5" [routerLink]="['/viewprofile',(x.userId)]" routerLinkActive="router-link-active" >
                         <img src="{{x.profileImageUrl}}" class="rounded-circle border border-dark" style="width: 60px ;height: 60px;" alt="profile img">
                         {{x.userName}}
@@ -33,13 +33,13 @@
                           <div class="d-flex border-bottom ">
                             <!-- Check if likedUsers is null -->
                             <ng-container *ngIf="x.likedOrNot==2;else elseblock">
-                              <img class="m-2" src="https://cdn-icons-png.flaticon.com/512/1077/1077035.png" (click)="like(x.postId)" style="width: 30px;height: 30px;" alt="">
+                              <img class="m-2" src="https://cdn-icons-png.flaticon.com/512/1077/1077035.png" (click)="like(x.postId)" style="width: 30px;height: 30px;cursor: pointer;" alt="">
                             </ng-container>
                             <ng-template #elseblock>
-                              <img class="m-2" src="https://cdn-icons-png.flaticon.com/512/833/833472.png" (click)="like(x.postId)" style="width: 30px;height: 30px;" alt="">
+                              <img class="m-2" src="https://cdn-icons-png.flaticon.com/512/833/833472.png" (click)="like(x.postId)" style="width: 30px;height: 30px;cursor: pointer;" alt="">
                             </ng-template>
                             <span *ngIf="x.likedUsers!=null" class="fs-6 mt-2">{{x.likeCount}} likes</span>
-                            <img class="m-2" src="https://cdn-icons-png.flaticon.com/512/3193/3193015.png" (click)="comment(x.postId)" style="width: 30px;height: 30px;" alt="">
+                            <img class="m-2" src="https://cdn-icons-png.flaticon.com/512/3193/3193015.png" (click)="comment(x.postId)" style="width: 30px;height: 30px;cursor: pointer;" alt="">
                             <span class="fs-6 mt-2" *ngIf="x.commentCount>0" (click)="showComments(x.postId)">{{x.commentCount}} comments</span>
                           </div>
                           <div class="input-group my-3 " *ngIf="commentbox==true && commentboxId==x.postId">
@@ -90,11 +90,11 @@
 
 
 <!-- suggestion list -->
-    <div class="col lg-3 my-3">
+    <div class="col-lg-3 my-3">
         <div class="container border-start">
             <h1 class="text-center">Suggestions</h1>
             <div class=" my-2 "  *ngFor="let x of profiledata">
-                <ul class="list-group list-group-flush">
+                <ul class="list-group list-group-flush" style="cursor:pointer">
                     <li class="list-group-item  rounded">
                       <div class="row align-items-center">
                         <div class="col-9" [routerLink]="['/viewprofile', (x.userId)]">

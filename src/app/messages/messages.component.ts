@@ -41,7 +41,6 @@ export class MessagesComponent implements OnInit {
 
     this.fetchMessages();
 
-    // Poll for new messages every 3 seconds
     interval(3000).subscribe(() => {
       this.fetchMessages();
     });

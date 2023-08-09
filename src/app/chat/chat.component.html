@@ -4,7 +4,7 @@
         <div class="col-4 border-end">
         <div *ngFor="let x of chatusers " class=" rounded shadow rounded-pill m-2 p-2" >
            
-           <div  [routerLink]="['/home/message',(x.userId)]" routerLinkActive="router-link-active">
+           <div  [routerLink]="['/home/message',(x.userId)]" routerLinkActive="router-link-active" style="cursor:pointer">
            
             <img src="{{x.profileImageUrl}}" class="rounded-circle border border-dark mx-2 " style="width: 60px; height: 60px;" alt="">
             <span class="fs-5" >{{x.userName}}</span>    
