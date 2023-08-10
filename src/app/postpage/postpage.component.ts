@@ -24,6 +24,7 @@ export class PostpageComponent {
   subcommentboxId!:any;
   SubcommentText:string='';
   subcommentdata!:any;
+  
   req_object={
     followerId: this.loginUserId,
     followingId: 0,
@@ -50,14 +51,12 @@ export class PostpageComponent {
 
   constructor(private api:ApiService ,private auth:AuthService){
     this.loginUserId=this.auth.getId();
-
     this.api.usersuggestion(this.loginUserId).subscribe(x=>{
       this.profiledata=this.api.dataparser(x)
     })
     this.api.homepagepost(this.loginUserId).subscribe(x=>{
       this.postdata=this.api.dataparser(x);
-    })
-    
+    }) 
   }
 
   async ngOnInit(){
@@ -142,7 +141,6 @@ export class PostpageComponent {
       this.api.homepagepost(this.loginUserId).subscribe(x=>{
         this.postdata=this.api.dataparser(x);
       })
-     
     })
     this.SubcommentText='';
   }
@@ -154,6 +152,4 @@ export class PostpageComponent {
     this.subcommentshow=true;
 
   }
-
-  
 }

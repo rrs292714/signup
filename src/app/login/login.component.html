@@ -4,6 +4,9 @@
   <h1 class="font1 m-2" >Instagram</h1>
 </div>
 </div>
+<ng-container *ngIf="loader==false;else elseloader">
+  
+
 <div class=" container w-75 shadow rounded my-5 p-5">
 <form [formGroup]="loginForm" (ngSubmit)="Onlogin()">
   <div class="mb-3">
@@ -38,3 +41,15 @@
 <span >Don't have an account?<a routerLink='/register' routerLinkActive="router-link-active" >Sign Up</a></span>
 </div>
 </div>
+</ng-container>
+<ng-template #elseloader>
+  <div
+    class="  d-flex flex-column gap-3 justify-content-center align-items-center text-danger    bg-white bg-opacity-50  my-5 " >
+    <div class="" style="width: 5rem; height: 5rem;" role="status">
+    </div>
+    <div class=" h4 my-color">
+      <img src="../../assets/Instagram_logo_2016.svg.webp" style="width: 60px ;height: 60px;" alt="">
+      <p class="font1 m-2 text-dark">Instagram</p>
+    </div>
+  </div>
+</ng-template>

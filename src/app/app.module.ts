@@ -30,6 +30,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.component';
 import { CommonModule } from '@angular/common';
 import { ViewpostpageComponent } from './viewpostpage/viewpostpage.component';
+import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 
 
 @NgModule({
@@ -52,7 +53,8 @@ import { ViewpostpageComponent } from './viewpostpage/viewpostpage.component';
     MessagesComponent,
     SearchingComponent,
     ForgotpasswordComponent,
-    ViewpostpageComponent
+    ViewpostpageComponent,
+    PagenotfoundComponent
   ],
   imports: [
     BrowserModule,

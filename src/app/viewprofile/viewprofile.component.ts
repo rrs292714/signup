@@ -19,12 +19,12 @@ export class ViewprofileComponent implements OnInit {
     this.loginedUser=this.auth.getId();
     this.id=this.route.snapshot.paramMap.get("id");
     this.api.getpost(this.id).subscribe(x=>{
-      this.profiledata=this.api.dataparser(x)
+      this.profiledata=this.api.dataparser(x);
       this.api.followingOrnot(this.loginedUser,this.id).subscribe(x=>{
         this.followingdata=x;
         console.log(this.followingdata);
       })
-    }) 
+    })
   }
 
 

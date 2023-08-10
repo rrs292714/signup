@@ -10,6 +10,8 @@ import { AuthService } from '../services/auth.service';
 })
 export class LoginComponent implements OnInit{
 loginForm!: FormGroup;
+loader:boolean=false;
+
 constructor(private fb:FormBuilder,private auth:AuthService,private route:Router){}
 ngOnInit(){
   this.loginForm = this.fb.group({
@@ -19,15 +21,20 @@ ngOnInit(){
 }
 
 Onlogin(){
+  this.loader=true;
   if(this.loginForm.valid){
     this.auth.login(this.loginForm.value)
     .subscribe({
       next:(res=>{
         this.auth.savetoken(res);
         // alert("login")
+  this.loader=false;
+
         this.route.navigate(['/home'])
       }),
       error:(err=>{
+      this.loader=false;
+
         alert("please check your userName and password!")
         // alert("ERROR")
       })

@@ -1,49 +1,108 @@
-
-<div class="container shadow rounded p-2 bg-dark text-white ">
-    <div class=" text-center m-2 border-bottom " *ngFor="let x of userdata">
-      <div [routerLink]="['/viewprofile',(id)]" routerLinkActive="router-link-active" style="cursor:pointer">
-        <img src="{{x.profileImageUrl}}" alt="profileImage" class="rounded-circle border border-light m-3 bg-light" style="width: 65px; height: 65px;" >
-        <span class="fs-5">{{x.userName}}</span>
-      </div>
-       
+<div class="container shadow rounded p-2 bg-dark text-white">
+  <div class="text-center m-2 border-bottom" *ngFor="let x of userdata">
+    <div
+      [routerLink]="['/viewprofile', id]"
+      routerLinkActive="router-link-active"
+      style="cursor: pointer"
+    >
+      <img
+        src="{{ x.profileImageUrl }}"
+        alt="profileImage"
+        class="rounded-circle border border-light m-3 bg-light"
+        style="width: 65px; height: 65px"
+      />
+      <span class="fs-5">{{ x.userName }}</span>
     </div>
-<div class=" overflow-scroll example" style="height:600px;"> 
+  </div>
+  <div class="overflow-scroll example" style="height: 600px">
     <div class="" *ngFor="let y of allmessages">
-
-        <p *ngIf="y.senderId==loginedUser" class="text-end border  p-2 p1 shadow rounded-pill fs-6" (click)="deletemessageid(y.chatId)" data-bs-toggle="modal" data-bs-target="#deletemessage">{{y.message}}</p>
-        <p *ngIf="y.senderId==id" class="text-start border p-2 p2 shadow rounded-pill  fs-6">{{y.message}}</p>
+      <p
+        *ngIf="y.senderId == loginedUser"
+        class="text-end border p-2 p1 shadow rounded-pill fs-6"
+        (click)="deletemessageid(y.chatId)"
+        data-bs-toggle="modal"
+        data-bs-target="#deletemessage"
+      >
+        {{ y.message }}
+      </p>
+      <p
+        *ngIf="y.senderId == id"
+        class="text-start border p-2 p2 shadow rounded-pill fs-6"
+      >
+        {{ y.message }}
+      </p>
     </div>
-</div>
-<div>    
-    <form >
-        <input type="text" class="rounded-pill w-75 p-2" name="message" [(ngModel)]="message" placeholder="Type your message....">
-        <ng-container *ngIf="message?.errors?.['required'] && message?.touched">
-          </ng-container>
-        <button class="btn btn-primary mx-2" (click)="sendMessage()" [disabled]="message.length==0" style="cursor:pointer"><svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
-            <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
-        </svg></button>
+  </div>
+  <div>
+    <form>
+      <input
+        type="text"
+        class="rounded-pill w-75 p-2"
+        name="message"
+        [(ngModel)]="message"
+        placeholder="Type your message...."
+      />
+      <ng-container *ngIf="message?.errors?.['required'] && message?.touched">
+      </ng-container>
+      <button
+        class="btn btn-primary mx-2"
+        (click)="sendMessage()"
+        [disabled]="message.length == 0"
+        style="cursor: pointer"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="25"
+          height="25"
+          fill="currentColor"
+          class="bi bi-arrow-right"
+          viewBox="0 0 16 16"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"
+          />
+        </svg>
+      </button>
     </form>
+  </div>
 </div>
-</div>
-
-
-
 
 <!-- DELETE MODAL -->
 
-    <!-- Modal -->
+<!-- Modal -->
 
-    <div class="modal fade" id="deletemessage" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h1 class="modal-title fs-5 text-center" id="exampleModalLabel">Delete Message</h1>
-          </div>
-          <div class="modal-body text-center">
-            <button type="button" class="btn btn-danger mx-2" data-bs-dismiss="modal" (click)="delete()">Delete</button>
-            <button type="button" class="btn btn-secondary mx-2" data-bs-dismiss="modal">Cancel</button>
-          </div>
-        </div>
+<div
+  class="modal fade"
+  id="deletemessage"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5 text-center" id="exampleModalLabel">
+          Delete Message
+        </h1>
+      </div>
+      <div class="modal-body text-center">
+        <button
+          type="button"
+          class="btn btn-danger mx-2"
+          data-bs-dismiss="modal"
+          (click)="delete()"
+        >
+          Delete
+        </button>
+        <button
+          type="button"
+          class="btn btn-secondary mx-2"
+          data-bs-dismiss="modal"
+        >
+          Cancel
+        </button>
       </div>
     </div>
-    
+  </div>
+</div>

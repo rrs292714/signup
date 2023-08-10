@@ -7,14 +7,17 @@
 <div class=" container w-75 border bordergradient shadow  rounded my-5 p-3">
     <h1 class="font1  text-center" >Sign Up</h1>
 <form [formGroup]="RegisterForm" (ngSubmit)="otpgen()">
+
   <div class="mb-3">
     <label for="exampleInputEmail1" class="form-label">Email :</label>
     <input type="email" class="form-control" name="email" id="exampleInputEmail1" aria-describedby="emailHelp" formControlName="Email">
   </div>
+
     <div class="mb-3">
       <label for="firstName" class="form-label">Full Name :</label>
       <input type="text" class="form-control" name="fname" id="firstName" formControlName="FullName" >
     </div>
+
     <!-- <div class="mb-3">
         <label for="exampleInputEmail1" class="form-label">Last Name :</label>
         <input type="text" class="form-control" name="lname" id="exampleInputEmail1" formControlName="LastName" >
@@ -24,6 +27,7 @@
         <label for="username" class="form-label">UserName :</label>
         <input type="text" class="form-control" name="uname" id="username" formControlName="UserName">
       </div>      
+
     <div class="mb-3 ">
       <label for="exampleInputPassword1" class="form-label">Password :</label>
       <input type="password" class="form-control" name="name" id="exampleInputPassword1" formControlName="Password">
@@ -34,7 +38,6 @@
 <span >Already have an account?<a routerLink='/login' routerLinkActive="router-link-active " class="text-decoration-none"> Login</a></span>
 </div>
 </div>
-
 
 <div class="modal fade" id="otpmodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -55,13 +58,12 @@
                   formControlName="otp"
                 />
               </div>
-             <div class="py-2 mx-2">
+            <div class="py-2 mx-2">
               <button type="button" class="btn btn-secondary mx-2" data-bs-dismiss="modal">Close</button>
               <button type="submit" class="btn btn-primary mx-2" data-bs-dismiss="modal" (click)="checkotp()"  data-bs-toggle="modal" data-bs-target="#otpmodal">Verify</button>
             </div>
-            </form>
+          </form>
       </div>
-      
     </div>
   </div>
 </div>

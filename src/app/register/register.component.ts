@@ -18,10 +18,10 @@ constructor(private fb:FormBuilder,private auth:AuthService,private route:Router
 
 ngOnInit(){
   this.RegisterForm = this.fb.group({
-    Email: ['', Validators.required],
-    FullName: ['', Validators.required],
-    UserName: ['', Validators.required],
-    Password: ['', Validators.required]
+    Email: ['', [Validators.required,Validators.email]],
+    FullName: ['',[Validators.required,Validators.pattern]],
+    UserName: ['',[Validators.required]],
+    Password: ['',[Validators.required]]
   });
 
   this.otpform=this.fb.group({
