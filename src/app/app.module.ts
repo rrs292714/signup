@@ -1,4 +1,4 @@
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
@@ -31,6 +31,7 @@ import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.compone
 import { CommonModule } from '@angular/common';
 import { ViewpostpageComponent } from './viewpostpage/viewpostpage.component';
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
+import { InterceptosInterceptor } from './interceptors/interceptos.interceptor';
 
 
 @NgModule({
@@ -71,7 +72,11 @@ import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
     MatIconModule,
     CommonModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide:HTTP_INTERCEPTORS,useClass:InterceptosInterceptor,multi:true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

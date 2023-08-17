@@ -57,7 +57,7 @@ export class MessagesComponent implements OnInit {
   sendMessage() {
     this.message_form.senderId = this.loginedUser;
     this.message_form.receiverId = this.id;
-    this.message_form.message = this.message;
+    this.message_form.message = this.message;  
     console.log(this.message);
     console.log(this.message_form);
     this.api.postchat(this.message_form).subscribe(x => {
