@@ -14,37 +14,39 @@ export class NotificationComponent implements OnInit {
   loginedUser!:any;
   notificationdata!:any;
   constructor(private api:ApiService,private route:ActivatedRoute,private auth:AuthService){}
+  
   req_object={
     followerId: this.loginedUser,
     followingId: 0,
     connectionStatus: "string"
   }
+
   formobj={
     followerId: 0,
     followingId: 0
   }
+
   ngOnInit() {
    this.loginedUser=this.auth.getId();
    this.api.getrequests(this.loginedUser).subscribe(x=>{
     this.requests=x;
-   })
+   });
    this.api.getNotications(this.loginedUser).subscribe(x=>{
     this.notificationdata=x;
-   })
-  }
-
+   });
+  };
 
  accept(id:number){
     this.req_object.followingId=id;
     this.req_object.followerId=this.loginedUser;
     console.log(id);
-    console.log(this.loginedUser)
+    console.log(this.loginedUser);
     this.api.accept(this.req_object).subscribe(x=>{
       this.api.getrequests(this.loginedUser).subscribe(x=>{
         this.requests=x;
-       })
-    })
-  }
+       });
+    });
+  };
 
   async decline(id:number){
     console.log(id);

@@ -31,12 +31,12 @@ export class ViewpostpageComponent implements OnInit{
 
   ngOnInit(){
   this.loginUserId= this.auth.getId();
-
     this.postId=this.route.snapshot.paramMap.get("id");
     this.api.getPostByPostId(this.postId).subscribe(x=>{
       this.postdata=x;
     })
   }
+
   req_object={
     followerId: this.loginUserId,
     followingId: 0,
@@ -88,13 +88,10 @@ export class ViewpostpageComponent implements OnInit{
       this.showcomment=true;
   }
 
-
   comment(postId:number){
-
     this.commentbox=true;
     this.commentboxId=postId;
   }
-
 
   SubmitComment(postId:number){
     this.comment_object.userId=this.loginUserId;
@@ -111,12 +108,10 @@ export class ViewpostpageComponent implements OnInit{
     this.commentText='';
   }
 
-
   Subcomment(commentId:number){
     this.subcommentboxId=commentId; 
     this.subcommentbox=true;
   }
-
 
   SubmitsubComment(commentId:any){
     this.subcomment_object.userId=this.loginUserId;

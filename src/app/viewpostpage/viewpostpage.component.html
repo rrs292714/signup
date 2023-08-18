@@ -1,81 +1,188 @@
 <!-- {{postdata|json}} -->
 <div class="container-fluid">
-    <div class="container" >    
-        <div class="card mx-auto my-3" style="width:50vw;">
-                <div class="d-flex m-2 border-bottom border-secondary">
-                   <span class="fs-5" [routerLink]="['/viewprofile',(postdata.userId)]" routerLinkActive="router-link-active" >
-                    <img src="{{postdata.profileImageUrl}}" class="rounded-circle border border-dark" style="width: 60px ;height: 60px;" alt="profile img">
-                    {{postdata.userName}}
-                   </span>
-                </div>
-                
-                <div [id]="postdata.postId" class="carousel slide">
-                  <div class="carousel-inner">
-                    <ng-container *ngFor="let y of postdata.media; let i = index">
-                      <div class="carousel-item" [class.active]="i === 0">
-                        <img  [src]="y.mediaUrl" class="d-block w-100" alt="postImage">
-                        <img *ngIf="endsWith(y.mediaUrl, '.jpg')" [src]="y.mediaUrl" class="d-block w-100" alt="postImage">
-                        <video *ngIf="endsWith(y.mediaUrl, '.mp4')" [src]="y.mediaUrl" alt="video" controls></video>
-                      </div>
-                    </ng-container>
-                  </div>
-                  <button class="carousel-control-prev" type="button" [ngClass]="{'d-none':postdata.media.length==1 }" [attr.data-bs-target]="'#'+postdata.postId" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                  </button>
-                  <button class="carousel-control-next" type="button" [ngClass]="{'d-none':postdata.media.length==1 }" [attr.data-bs-target]="'#'+postdata.postId" data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                  </button>
-                </div>
+  <div class="container">
+    <div class="card mx-auto my-3" style="width: 50vw">
+      <div class="d-flex m-2 border-bottom border-secondary">
+        <span
+          class="fs-5"
+          [routerLink]="['/viewprofile', postdata.userId]"
+          routerLinkActive="router-link-active"
+        >
+          <img
+            src="{{ postdata.profileImageUrl }}"
+            class="rounded-circle border border-dark"
+            style="width: 60px; height: 60px"
+            alt="profile img"
+          />
+          {{ postdata.userName }}
+        </span>
+      </div>
 
-                <div class="card-body ">
-                    <div class="d-flex border-bottom ">
-                      <!-- Check if likedUsers is null -->
-                      <ng-container *ngIf="postdata.likedOrNot==2;else elseblock">
-                          <img class="m-2" src="https://cdn-icons-png.flaticon.com/512/1077/1077035.png" (click)="like(postdata.postId)" style="width: 30px;height: 30px;" alt="">
-                      </ng-container>
-                    <ng-template #elseblock>
-                        <img class="m-2" src="https://cdn-icons-png.flaticon.com/512/833/833472.png" (click)="like(postdata.postId)" style="width: 30px;height: 30px;" alt="">
-                      </ng-template>
-                      <span *ngIf="postdata.likedUsers!=null" class="fs-6 mt-2">{{postdata.likeCount}} likes</span>
-                      <img class="m-2" src="https://cdn-icons-png.flaticon.com/512/3193/3193015.png" (click)="comment(postdata.postId)" style="width: 30px;height: 30px;" alt="">
-                      <span class="fs-6 mt-2" *ngIf="postdata.commentCount>0" (click)="showComments(postdata.postId)">{{postdata.commentCount}} comments</span>
-                    </div>
-                    <div class="input-group my-3 " *ngIf="commentbox==true && commentboxId==postdata.postId">
-                      <input type="text" class="form-control" placeholder="write your comment....." [(ngModel)]="commentText"  aria-label="Username" aria-describedby="basic-addon1">
-                      <button class="btn btn-primary" (click)="SubmitComment(postdata.postId)" [disabled]="commentText.length == 0">Comment</button>   
-                    </div>
-                    <div class="my-2">
-                      <p class="card-text"><span class="fw-bold">{{postdata.userName}}</span> {{postdata.caption}}</p>
-                    </div>
+      <div [id]="postdata.postId" class="carousel slide">
+        <div class="carousel-inner">
+          <ng-container *ngFor="let y of postdata.media; let i = index">
+            <div class="carousel-item" [class.active]="i === 0">
+              <img [src]="y.mediaUrl" class="d-block w-100" alt="postImage" />
+              <img
+                *ngIf="endsWith(y.mediaUrl, '.jpg')"
+                [src]="y.mediaUrl"
+                class="d-block w-100"
+                alt="postImage"
+              />
+              <video
+                *ngIf="endsWith(y.mediaUrl, '.mp4')"
+                [src]="y.mediaUrl"
+                alt="video"
+                controls
+              ></video>
+            </div>
+          </ng-container>
+        </div>
+        <button
+          class="carousel-control-prev"
+          type="button"
+          [ngClass]="{ 'd-none': postdata.media.length == 1 }"
+          [attr.data-bs-target]="'#' + postdata.postId"
+          data-bs-slide="prev"
+        >
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button
+          class="carousel-control-next"
+          type="button"
+          [ngClass]="{ 'd-none': postdata.media.length == 1 }"
+          [attr.data-bs-target]="'#' + postdata.postId"
+          data-bs-slide="next"
+          >
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
 
-                    <ng-container *ngFor="let item of postdata.comments">
-                      <div class="container border border rounded m-2" *ngIf="showcomment==true && postdata.postId==item.postId" >
-                   <div class="border m-2"> 
-                    <img class="border border-dark rounded-circle m-2" [src]="item.profileImageUrl" alt="" style="width: 40px ;height: 40px;">
-                    <span class="m-2">{{item.userName}}</span>
-                  
-                    <span class="m-2">{{item.commentText}}</span>
-                  </div>
-                    <div class="container text-end">
-                      <span class="btn border-light " (click)="Subcomment(item.commentId)">Reply</span>
-                    </div>
-                    <div class="input-group my-3 " *ngIf="subcommentbox==true && subcommentboxId==item.commentId">
-                      <input type="text" class="form-control" placeholder="write your comment....." [(ngModel)]="SubcommentText" aria-label="Username" aria-describedby="basic-addon1">
-                      <button class="btn btn-primary" (click)="SubmitsubComment(item.commentId)" [disabled]="SubcommentText.length == 0">Comment</button>   
-                    </div>
-                    <ng-container *ngFor="let a of subcommentdata">
-                      <div class="border m-2 container">
-                    <img class="border border-dark rounded-circle m-2" [src]="a.profileImageUrl" alt="" style="width: 40px ;height: 40px;">
-                    <span class="m-2">{{a.userName}}</span>
-                    <span class="m-2">{{a.subCommentText}}</span>
-                     </div>
-                    </ng-container>
-                      </div>
-                    </ng-container>
-                  </div>
+      <div class="card-body">
+        <div class="d-flex border-bottom">
+          <!-- Check if likedUsers is null -->
+          <ng-container *ngIf="postdata.likedOrNot == 2; else elseblock">
+            <img
+              class="m-2"
+              src="https://cdn-icons-png.flaticon.com/512/1077/1077035.png"
+              (click)="like(postdata.postId)"
+              style="width: 30px; height: 30px"
+              alt=""
+            />
+          </ng-container>
+          <ng-template #elseblock>
+            <img
+              class="m-2"
+              src="https://cdn-icons-png.flaticon.com/512/833/833472.png"
+              (click)="like(postdata.postId)"
+              style="width: 30px; height: 30px"
+              alt=""
+            />
+          </ng-template>
+          <span *ngIf="postdata.likedUsers != null" class="fs-6 mt-2"
+            >{{ postdata.likeCount }} likes</span
+          >
+          <img
+            class="m-2"
+            src="https://cdn-icons-png.flaticon.com/512/3193/3193015.png"
+            (click)="comment(postdata.postId)"
+            style="width: 30px; height: 30px"
+            alt=""
+          />
+          <span
+            class="fs-6 mt-2"
+            *ngIf="postdata.commentCount > 0"
+            (click)="showComments(postdata.postId)"
+            >{{ postdata.commentCount }} comments</span
+          >
+        </div>
+        <div
+          class="input-group my-3"
+          *ngIf="commentbox == true && commentboxId == postdata.postId"
+        >
+          <input
+            type="text"
+            class="form-control"
+            placeholder="write your comment....."
+            [(ngModel)]="commentText"
+            aria-label="Username"
+            aria-describedby="basic-addon1"
+          />
+          <button
+            class="btn btn-primary"
+            (click)="SubmitComment(postdata.postId)"
+            [disabled]="commentText.length == 0"
+          >
+            Comment
+          </button>
+        </div>
+        <div class="my-2">
+          <p class="card-text">
+            <span class="fw-bold">{{ postdata.userName }}</span>
+            {{ postdata.caption }}
+          </p>
+        </div>
 
-</div>
+        <ng-container *ngFor="let item of postdata.comments">
+          <div
+            class="container border border rounded m-2"
+            *ngIf="showcomment == true && postdata.postId == item.postId"
+          >
+            <div class="border m-2">
+              <img
+                class="border border-dark rounded-circle m-2"
+                [src]="item.profileImageUrl"
+                alt=""
+                style="width: 40px; height: 40px"
+              />
+              <span class="m-2">{{ item.userName }}</span>
+
+              <span class="m-2">{{ item.commentText }}</span>
+            </div>
+            <div class="container text-end">
+              <span
+                class="btn border-light"
+                (click)="Subcomment(item.commentId)"
+                >Reply</span
+              >
+            </div>
+            <div
+              class="input-group my-3"
+              *ngIf="subcommentbox == true && subcommentboxId == item.commentId"
+            >
+              <input
+                type="text"
+                class="form-control"
+                placeholder="write your comment....."
+                [(ngModel)]="SubcommentText"
+                aria-label="Username"
+                aria-describedby="basic-addon1"
+              />
+              <button
+                class="btn btn-primary"
+                (click)="SubmitsubComment(item.commentId)"
+                [disabled]="SubcommentText.length == 0"
+              >
+                Comment
+              </button>
+            </div>
+            <ng-container *ngFor="let a of subcommentdata">
+              <div class="border m-2 container">
+                <img
+                  class="border border-dark rounded-circle m-2"
+                  [src]="a.profileImageUrl"
+                  alt=""
+                  style="width: 40px; height: 40px"
+                />
+                <span class="m-2">{{ a.userName }}</span>
+                <span class="m-2">{{ a.subCommentText }}</span>
+              </div>
+            </ng-container>
+          </div>
+        </ng-container>
+      </div>
     </div>
+  </div>
 </div>

@@ -104,12 +104,10 @@ export class PostpageComponent {
       this.showcomment=true;
   }
 
-
   comment(postId:number){
     this.commentbox=true;
     this.commentboxId=postId;
   }
-
 
   SubmitComment(postId:number){
     this.comment_object.userId=this.loginUserId;
@@ -126,12 +124,10 @@ export class PostpageComponent {
     this.commentText='';
   }
 
-
   Subcomment(commentId:number){
     this.subcommentboxId=commentId; 
     this.subcommentbox=true;
   }
-
 
   SubmitsubComment(commentId:any){
     this.subcomment_object.userId=this.loginUserId;
@@ -150,6 +146,5 @@ export class PostpageComponent {
       this.subcommentdata=x;
     })
     this.subcommentshow=true;
-
   }
 }
